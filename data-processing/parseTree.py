@@ -1,13 +1,17 @@
 import collections
 import sys
 import os
+import pickle
 
 class ParseNode: # a node in the tree
 
-  def __init__(self,parseString,parent=None,children=[]):
+  def __init__(self,parseString,parent=None,children=None):
     self.parseString = parseString
     self.parent = parent
-    self.children = children
+    if children is None:
+      self.children = []
+    else:
+      self.children = children
 
 def convertExampleToTree(exFile, verbose=False):
   f = open(exFile, "r")
@@ -22,7 +26,7 @@ def convertExampleToTree(exFile, verbose=False):
       currTreeLines.append(line)
   for tree in totalTreeLines: 
     tabNumsOld = 0
-    root = ParseNode(tree[0].strip)
+    root = ParseNode(tree[0].strip())
     currNode = root
     for line in tree[1:]:
       tabNumsNew = len(line.split("\t")) - 1
@@ -48,5 +52,8 @@ def prepareTrainExamples(trainDir, verbose=False):
     trainingSet.append(convertExampleToTree(os.path.join(trainDir, filename), verbose=verbose))
     if verbose:
       print("Finished example " + filename)
+  return trainingSet
+
 if __name__ == "__main__":
-  prepareTrainExamples("../parses/iter.0", verbose=True)
+  trainingSet = prepareTrainExamples("../parses/iter.4", verbose=True)
+  pickle.dump(trainingSet, open("training-trees.pickle", "wb"))
