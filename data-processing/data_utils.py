@@ -1,21 +1,21 @@
-import csv
 from collections import Counter
 import pickle
+import os
 
-def count_words(filename):
+# We assume the only files in the director
+# are the files that we want to count
+def count_words(directory):
     counts = Counter()
-    with open(filename) as tsv:
-        stopafter = 10
-        for line in csv.reader(tsv, dialect="excel-tab"):
-            counts[line[0]] += 1
-            counts[line[2]] += 1
-            tokens = line[1].split()
-            for token in tokens:
-                counts[token] += 1
+    for filename in os.listdir(directory):
+        with open(directory + filename) as f:
+            content = f.read()
+            words = content.split()
+            for word in words:
+                counts[word.strip()] += 1
     return counts
 
-def write_pickle(obj, output_name):
-    output = open(output_name, "wb")
+def write_pickle(path, obj, output_name):
+    output = open(path + output_name + ".pkl", "wb")
     pickle.dump(obj, output, -1)
     output.close()
 
@@ -34,3 +34,9 @@ def create_word_to_index(counter):
 def invert_dict(counter):
     return {v: k for k, v in counter.iteritems()}
 
+def get_and_write_counts(directory):
+    data_loc = "../data/"
+    counts = count_words(directory)
+    word_to_index = create_word_to_index(counts)
+    write_pickle(data_loc, counts, "counts")
+    write_pickle(data_loc, word_to_index, "word_to_index")
