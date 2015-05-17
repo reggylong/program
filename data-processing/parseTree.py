@@ -1,15 +1,20 @@
 import collections
 import sys
 import os
+import pickle
 
 class ParseNode: # a node in the tree
 
-  def __init__(self,parseString,parent=None,children=[]):
+  def __init__(self,parseString,strIndex, parent=None,children=None):
     self.parseString = parseString
+    self.strIndex = strIndex
     self.parent = parent
-    self.children = children
+    if children is None:
+      self.children = []
+    else:
+      self.children = children
 
-def convertExampleToTree(exFile, verbose=False):
+def convertExampleToTree(exFile, wordDict, verbose=False):
   f = open(exFile, "r")
   totalTreeLines = []
   currTreeLines = []
@@ -22,7 +27,8 @@ def convertExampleToTree(exFile, verbose=False):
       currTreeLines.append(line)
   for tree in totalTreeLines: 
     tabNumsOld = 0
-    root = ParseNode(tree[0].strip)
+    parseString = tree[0].strip()
+    root = ParseNode(parseString, wordDict[parseString])
     currNode = root
     for line in tree[1:]:
       tabNumsNew = len(line.split("\t")) - 1
@@ -34,19 +40,24 @@ def convertExampleToTree(exFile, verbose=False):
           parent = currNode
         else: 
           parent = currNode.parent.parent
-      newNode = ParseNode(line.strip(), parent=parent)
+      parseString = line.strip()
+      newNode = ParseNode(parseString, wordDict[parseString], parent=parent)
       parent.children.append(newNode)
       currNode = newNode
       tabNumsOld = tabNumsNew
     treeList.append(root)
   return treeList
 
-def prepareTrainExamples(trainDir, verbose=False):
+def prepareTrainExamples(trainDir, word_to_ind_path, verbose=False):
   trainingSet = []
+  wordToInds = pickle.load(open(word_to_ind_path, "rb"))
   exampleFiles = [f for f in os.listdir(trainDir) if os.path.isfile(os.path.join(trainDir, f))]
   for filename in exampleFiles: 
-    trainingSet.append(convertExampleToTree(os.path.join(trainDir, filename), verbose=verbose))
+    trainingSet.append(convertExampleToTree(os.path.join(trainDir, filename), wordToInds, verbose=verbose))
     if verbose:
       print("Finished example " + filename)
+  return trainingSet
+
 if __name__ == "__main__":
-  prepareTrainExamples("../parses/iter.0", verbose=True)
+  trainingSet = prepareTrainExamples("../parses/iter.4", "../data/word_to_index.pkl", verbose=True)
+  pickle.dump(trainingSet, open("training-trees.pickle", "wb"))

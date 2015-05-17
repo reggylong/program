@@ -1,7 +1,7 @@
 import numpy as np
 from nnbase import NNBase
 
-class QAEmbed(NNBase):
+class SimpleLinear(NNBase):
     """
     """
     def __init__(self, W_dim=None, W=None,
@@ -36,7 +36,7 @@ class QAEmbed(NNBase):
         return dot(questionEmbed, answerEmbed)
 
     def compute_loss(self, X, Y)
-         if not isinstance(X[0], ndarray): # single example
+        if not isinstance(X[0], ndarray): # single example
             return self.compute_single_q_loss(X, Y)
         else: # multiple examples
             return sum([self.compute_single_q_loss(xs,ys)
