@@ -5,9 +5,9 @@ import pickle
 
 class ParseNode: # a node in the tree
 
-  def __init__(self,parseString,strIndex, parent=None,children=None):
+  def __init__(self,parseString,strInds, parent=None,children=None):
     self.parseString = parseString
-    self.strIndex = strIndex
+    self.strInds = strInds
     self.parent = parent
     if children is None:
       self.children = []
@@ -28,7 +28,8 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
   for tree in totalTreeLines: 
     tabNumsOld = 0
     parseString = tree[0].strip()
-    root = ParseNode(parseString, wordDict[parseString])
+    indArr = [wordDict[word] for word in parseString.split()]
+    root = ParseNode(parseString, indArr)
     currNode = root
     for line in tree[1:]:
       tabNumsNew = len(line.split("\t")) - 1
@@ -41,7 +42,8 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
         else: 
           parent = currNode.parent.parent
       parseString = line.strip()
-      newNode = ParseNode(parseString, wordDict[parseString], parent=parent)
+      indArr = [wordDict[word] for word in parseString.split()]
+      newNode = ParseNode(parseString, indArr, parent=parent)
       parent.children.append(newNode)
       currNode = newNode
       tabNumsOld = tabNumsNew
