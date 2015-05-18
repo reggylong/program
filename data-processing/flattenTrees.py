@@ -9,6 +9,10 @@ treePickle = args[1]
 flatPickle = args[2]
 trainingSet = pickle.load(open(treePickle, "rb"))
 flattenedTraining = []
+if len(args) < 4:
+  skipInd = 0
+else:
+  skipInd = int(args[3])
 
 #def treeToArrays(node):
 #  currArray = []
@@ -40,4 +44,4 @@ for example in trainingSet:
     exampleArr.append(flat)
   flattenedTraining.append(exampleArr)
 
-pickle.dump(flattenedTraining, open(flatPickle, "wb")) 
+pickle.dump(flattenedTraining[skipInd:], open(flatPickle, "wb")) 
