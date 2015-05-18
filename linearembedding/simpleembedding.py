@@ -100,6 +100,28 @@ class SimpleLinear(NNBase):
         margin_sum += self.margin
         return max(margin_sum, 0)
 
+    def predict_single(self, answers, question):
+        leftq, rightq = question
+        maxScore = -inf
+        argmaxScore = -1
+        lqEmbed = sum(self.sparams.W[leftq], axis=0)
+        rqEmbed = sum(self.sparams.W[rightq], axis=0)
+        for ind, candidate in enumerate(answer):
+            lefta, righta = answer 
+            laEmbed = sum(self.sparams.W[lefta], axis=0)
+            raEmbed = sum(self.sparams.W[righta], axis=0)
+            score = dot(lqEmbed.T, laEmbed) + dot(rqEmbed.T, raEmbed)
+            if score > maxScore: 
+                maxScore = score
+                argmaxScore = ind
+        return argmaxScore
+
+    def predict(self, parses, utterances):
+        outputs = zeros((len(parses),))
+        for ind, parseSet, utterance in enumerate(itertools.izip(parses, utterances)):
+            outputs[ind] = self.predict_single(parseSet, utterance)
+        return outputs
+        
     def compute_loss(self, X, y):
         if not isinstance(X[0][0], collections.Iterable): # single example
             return self.compute_single_q_loss(X, y)
