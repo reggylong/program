@@ -39,7 +39,4 @@ class SimpleLinear(NNBase):
         if not isinstance(X[0], ndarray): # single example
             return self.compute_single_q_loss(X, Y)
         else: # multiple examples
-            return sum([self.compute_single_q_loss(xs,ys)
-                       for xs,ys in itertools.izip(X, Y)])
-
-            
+            return sum([self.compute_single_q_loss(xs,ys) for xs,ys in itertools.izip(X, Y)])
