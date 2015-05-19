@@ -5,7 +5,7 @@ import random
 import itertools
 
 
-class SiameseNetwork(NNBase):
+class SiameseNet(NNBase):
 
     """
     # input + utterance
@@ -31,22 +31,23 @@ class SiameseNetwork(NNBase):
         
         W_output_dim = 100 
         W_shape = (W_output_dim,self.hdim)
-        self.params.W.shape = W_shape
         if W is not None:
-            W.shape = W_shape
+            W_shape = W.shape
 
-        param_dims = dict(H = (self.hdim, self.hdim), W = self.params.W.shape, b = self.params.W_output_dim)
+        param_dims = dict(W = W_shape, b = W_shape[0])
         param_dims_sparse = dict(L = L0.shape)
         NNBase.__init__(self, param_dims, param_dims_sparse)
         
+        self.params.W.shape = W_shape
         random.seed(rseed)
         self.sparams.L = L0.copy()
+
         if W is not None:
             self.params.W = W.copy()
         else:
             self.params.W = random_weight_matrix(self.params.W.shape[0], self.params.W.shape[1]) 
-        
-        self.b = zeros((self.params.W_output_dim,))
+
+        self.sparams.b = zeros(W_shape[0]) 
         self.alpha = alpha
         self.reg = reg
 
@@ -62,7 +63,7 @@ class SiameseNetwork(NNBase):
         return 2.0 * self.sigmoid(2.0 * x) - 1
 
     def tanh_grad(self, f):
-        return 1.0 - f**2 
+        return 1.0 - square(f) 
 
     # question = (input, command)
     # answers = ([all parses], oracle parse)
@@ -78,8 +79,8 @@ class SiameseNetwork(NNBase):
         for idx in oracle:
             x2 += self.sparams.L[idx]
         
-        h1 = self.tanh(self.params.W.dot(x1) + self.b)
-        h2 = self.tanh(self.params.W.dot(x2) + self.b)
+        h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
+        h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
         
         # Backward propagation
         z1 = (h1 - h2) * self.tanh_grad(h1)
@@ -104,16 +105,16 @@ class SiameseNetwork(NNBase):
         for idx in oracle:
             x2 += self.sparams.L[idx]
         
-        h1 = self.tanh(self.params.W.dot(x1) + self.b)
-        h2 = self.tanh(self.params.W.dot(x2) + self.b)
-        J = 1.0/2.0 * sum((h1 - h2)**2) + self.reg/2.0 * sum(self.params.W**2)
+        h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
+        h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
+        J = 1.0/2.0 * sum((h1 - h2)**2) + self.reg/2.0 * sum(self.params.W ** 2)
         return J
 
     # Loss over a dataset
     def compute_loss(self, X, Y):
         if not isinstance(X[0][0], collections.Iterable):
-            return self.compute_single_loss(X, y)
+            return self.compute_single_loss(X, Y)
         else:
             return sum([self.compute_single_loss(question, answers) \
-                for question, answers in itertools.izip(X, y))])
+                for question, answers in itertools.izip(X, Y)])
 
