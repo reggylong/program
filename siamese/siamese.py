@@ -31,11 +31,11 @@ class SiameseNetwork(NNBase):
         
         W_output_dim = 100 
         W_shape = (W_output_dim,self.hdim)
-        self.W.shape = W_shape
+        self.params.W.shape = W_shape
         if W is not None:
             W.shape = W_shape
 
-        param_dims = dict(H = (self.hdim, self.hdim), W = self.W.shape, b = self.W_output_dim)
+        param_dims = dict(H = (self.hdim, self.hdim), W = self.params.W.shape, b = self.params.W_output_dim)
         param_dims_sparse = dict(L = L0.shape)
         NNBase.__init__(self, param_dims, param_dims_sparse)
         
@@ -44,9 +44,9 @@ class SiameseNetwork(NNBase):
         if W is not None:
             self.params.W = W.copy()
         else:
-            self.params.W = random_weight_matrix(self.W.shape[0], self.W.shape[1]) 
+            self.params.W = random_weight_matrix(self.params.W.shape[0], self.params.W.shape[1]) 
         
-        self.b = zeros((self.W_output_dim,))
+        self.b = zeros((self.params.W_output_dim,))
         self.alpha = alpha
         self.reg = reg
 
@@ -78,8 +78,8 @@ class SiameseNetwork(NNBase):
         for idx in oracle:
             x2 += self.sparams.L[idx]
         
-        h1 = self.tanh(self.W.dot(x1) + self.b)
-        h2 = self.tanh(self.W.dot(x2) + self.b)
+        h1 = self.tanh(self.params.W.dot(x1) + self.b)
+        h2 = self.tanh(self.params.W.dot(x2) + self.b)
         
         # Backward propagation
         z1 = (h1 - h2) * self.tanh_grad(h1)
@@ -104,9 +104,9 @@ class SiameseNetwork(NNBase):
         for idx in oracle:
             x2 += self.sparams.L[idx]
         
-        h1 = self.tanh(self.W.dot(x1) + self.b)
-        h2 = self.tanh(self.W.dot(x2) + self.b)
-        J = 1.0/2.0 * sum((h1 - h2)**2) + self.reg/2.0 * sum(W**2)
+        h1 = self.tanh(self.params.W.dot(x1) + self.b)
+        h2 = self.tanh(self.params.W.dot(x2) + self.b)
+        J = 1.0/2.0 * sum((h1 - h2)**2) + self.reg/2.0 * sum(self.params.W**2)
         return J
 
     # Loss over a dataset
@@ -116,3 +116,4 @@ class SiameseNetwork(NNBase):
         else:
             return sum([self.compute_single_loss(question, answers) \
                 for question, answers in itertools.izip(X, y))])
+
