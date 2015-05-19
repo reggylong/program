@@ -8,13 +8,13 @@ import itertools
 class SiameseNetwork(NNBase):
 
     """
-    # utterance
+    # input + utterance
     r1 = sum L[x_i]
-    h1 = tanh(W * r1 + b1)
+    h1 = tanh(W * r1 + b)
 
-    # logical form
+    # logical form (parse)
     r2 = sum L[x_j]
-    h2 = tanh(W * r2 + b2)
+    h2 = tanh(W * r2 + b)
 
     # Cost Function (Frobenius norm)
     J = 1/2||h1-h2||^2 + reg/2||W||^2
@@ -29,14 +29,13 @@ class SiameseNetwork(NNBase):
         self.hdim = L0.shape[1] # word vector dimensions
         self.vdim = L0.shape[0] # vocab size
         
-        W_shape = (0,0)
-        if W is None:
-            W_shape = W.shape
-        else:
-            W_shape = (100, self.hdim)
-        assert(W_shape != (0,0))
+        W_output_dim = 100 
+        W_shape = (W_output_dim,self.hdim)
+        self.W.shape = W_shape
+        if W is not None:
+            W.shape = W_shape
 
-        param_dims = dict(H = (self.hdim, self.hdim), W = W_shape)
+        param_dims = dict(H = (self.hdim, self.hdim), W = self.W.shape, b = self.W_output_dim)
         param_dims_sparse = dict(L = L0.shape)
         NNBase.__init__(self, param_dims, param_dims_sparse)
         
@@ -45,21 +44,75 @@ class SiameseNetwork(NNBase):
         if W is not None:
             self.params.W = W.copy()
         else:
-            self.params.W = random_weight_matrix(W_shape[0], W_shape[1]) 
-
+            self.params.W = random_weight_matrix(self.W.shape[0], self.W.shape[1]) 
+        
+        self.b = zeros((self.W_output_dim,))
         self.alpha = alpha
+        self.reg = reg
 
-    def random_weight_matrix(m, n):
+    def random_weight_matrix(self, m, n):
         e = sqrt(6.0) / sqrt(m + n)
         A0 = random.uniform(-e, e, (m,n))
         return A0
 
-    def _acc_grads(self, xs, ys):
-        pass
+    def sigmoid(self, x):
+        return 1.0 / (1.0 + exp(-x))
 
-    def compute_single_loss(self, answers, questions):
-        pass
+    def tanh(self, x):
+        return 2.0 * self.sigmoid(2.0 * x) - 1
+
+    def tanh_grad(self, f):
+        return 1.0 - f**2 
+
+    # question = (input, command)
+    # answers = ([all parses], oracle parse)
+    def _acc_grads(self, question, answers):
+        # Forward propagation
+        input_q, command_q = question
+        all_parses, oracle = answers
+
+        x1 = zeros(self.hdim) 
+        x2 = zeros(self.hdim)
+        for idx in itertools.chain(input_q, command_q):
+            x1 += self.sparams.L[idx]
+        for idx in oracle:
+            x2 += self.sparams.L[idx]
+        
+        h1 = self.tanh(self.W.dot(x1) + self.b)
+        h2 = self.tanh(self.W.dot(x2) + self.b)
+        
+        # Backward propagation
+        z1 = (h1 - h2) * self.tanh_grad(h1)
+        z2 = (h2 - h1) * self.tanh_grad(h2)
+        self.grads.b += z1 + z2 
+        self.grads.W += outer(z1, x1) + outer(z2, x2) + self.reg * self.params.W
+        Lqgrad = self.params.W.T.dot(z1)
+        Lagrad = self.params.W.T.dot(z2)
+        for idx in itertools.chain(input_q, command_q):
+            self.sgrads.L[idx] = Lqgrad
+        for idx in oracle:
+            self.sgrads.L[idx] = Lagrad
+
+    def compute_single_loss(self, question, answers):
+        input_q, command_q = question
+        all_parses, oracle = answers
+
+        x1 = zeros(self.hdim) 
+        x2 = zeros(self.hdim)
+        for idx in itertools.chain(input_q, command_q):
+            x1 += self.sparams.L[idx]
+        for idx in oracle:
+            x2 += self.sparams.L[idx]
+        
+        h1 = self.tanh(self.W.dot(x1) + self.b)
+        h2 = self.tanh(self.W.dot(x2) + self.b)
+        J = 1.0/2.0 * sum((h1 - h2)**2) + self.reg/2.0 * sum(W**2)
+        return J
 
     # Loss over a dataset
     def compute_loss(self, X, Y):
-        pass
+        if not isinstance(X[0][0], collections.Iterable):
+            return self.compute_single_loss(X, y)
+        else:
+            return sum([self.compute_single_loss(question, answers) \
+                for question, answers in itertools.izip(X, y))])
