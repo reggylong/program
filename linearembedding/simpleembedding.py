@@ -106,8 +106,8 @@ class SimpleLinear(NNBase):
         argmaxScore = -1
         lqEmbed = sum(self.sparams.W[leftq], axis=0)
         rqEmbed = sum(self.sparams.W[rightq], axis=0)
-        for ind, candidate in enumerate(answer):
-            lefta, righta = answer 
+        for ind, candidate in enumerate(answers[0]):
+            lefta, righta = candidate
             laEmbed = sum(self.sparams.W[lefta], axis=0)
             raEmbed = sum(self.sparams.W[righta], axis=0)
             score = dot(lqEmbed.T, laEmbed) + dot(rqEmbed.T, raEmbed)
@@ -117,9 +117,9 @@ class SimpleLinear(NNBase):
         return argmaxScore
 
     def predict(self, parses, utterances):
-        outputs = zeros((len(parses),))
-        for ind, parseSet, utterance in enumerate(itertools.izip(parses, utterances)):
-            outputs[ind] = self.predict_single(parseSet, utterance)
+        outputs = []
+        for parseSet, utterance in itertools.izip(parses, utterances):
+            outputs.append(self.predict_single(parseSet, utterance))
         return outputs
         
     def compute_loss(self, X, y):

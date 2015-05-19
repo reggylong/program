@@ -53,10 +53,10 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
     treeList.append(root)
   return treeList
 
-def prepareTrainExamples(trainDir, word_to_ind_path, verbose=False):
+def prepareTrainExamples(trainDir, word_to_ind_path, verbose=False, parsePrefix=""):
   trainingSet = []
   wordToInds = load_pickle(word_to_ind_path)
-  exampleFiles = [f for f in os.listdir(trainDir) if os.path.isfile(os.path.join(trainDir, f))]
+  exampleFiles = [f for f in os.listdir(trainDir) if os.path.isfile(os.path.join(trainDir, f)) and len(f.split(parsePrefix)) > 1]
   for filename in exampleFiles: 
     trainingSet.append(convertExampleToTree(os.path.join(trainDir, filename), wordToInds, verbose=verbose))
     if verbose:
@@ -67,5 +67,6 @@ if __name__ == "__main__":
   args = sys.argv
   examples = args[1]
   savename = args[2]
-  trainingSet = prepareTrainExamples(examples, "../data/word_to_index.pkl", verbose=True)
+  parsePrefix = args[3]
+  trainingSet = prepareTrainExamples(examples, "../data/word_to_index.pkl", verbose=True, parsePrefix=parsePrefix)
   pickle.dump(trainingSet, open(savename, "wb"))
