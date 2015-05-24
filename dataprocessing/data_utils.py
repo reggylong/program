@@ -38,13 +38,17 @@ def add_to_existing():
     counts = load_pickle("../data/counts.pkl")
     word_to_index = load_pickle("../data/word_to_index.pkl")
     f = open("../data/string_program2.examples")
-    content = f.read().split()
+    content = f.read()
+    words = content.split()
     last_index = max([word_to_index[key] for key in word_to_index.keys()])
     k = last_index + 1
-    for word in content:
-        if word not in counts:
-            counts[word] += 1
-            word_to_index[word] = k 
+    for word in words:
+        x = word.strip()
+        x = x.replace("(","")
+        x = x.replace(")","")
+        if x not in counts:
+            counts[x] += 1
+            word_to_index[x] = k 
             k += 1
     write_pickle("../data/", counts, "counts")
     write_pickle("../data/", word_to_index, "word_to_index") 
