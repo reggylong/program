@@ -34,6 +34,23 @@ def create_word_to_index(counter):
 def invert_dict(counter):
     return {v: k for k, v in counter.iteritems()}
 
+def add_to_existing():
+    counts = load_pickle("../data/counts.pkl")
+    word_to_index = load_pickle("../data/word_to_index.pkl")
+    f = open("../data/string_program2.examples")
+    content = f.read().split()
+    last_index = max([word_to_index[key] for key in word_to_index.keys()])
+    k = last_index + 1
+    for word in content:
+        if word not in counts:
+            counts[word] += 1
+            word_to_index[word] = k 
+            k += 1
+    write_pickle("../data/", counts, "counts")
+    write_pickle("../data/", word_to_index, "word_to_index") 
+    print "Added " + str(k - last_index - 1) + " many words."
+
+
 def get_and_write_counts(directory):
     data_loc = "../data/"
     counts = count_words(directory)
