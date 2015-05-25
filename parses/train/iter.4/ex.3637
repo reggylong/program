@@ -1,0 +1,375 @@
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		tt
+
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		pp tt
+
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		oooo pp tt
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		3
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		3
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		3
+		false
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		3
+
+	edu.stanford.nlp.sempre.SFun.reverseGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		3
+
+	edu.stanford.nlp.sempre.SFun.reverseGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		3
+
+	edu.stanford.nlp.sempre.SFun.reverseGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		oooo
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		pp
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		remove
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		t
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		oooo pp
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		remove t
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		remove t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		oooo
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		remove
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		t
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		remove t
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		remove t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		remove
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		t
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		remove t
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		remove t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		oooo
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		pp
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		remove
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		t
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		oooo pp
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		remove t
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			tt
+		remove t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		oooo
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		remove
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		t
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		remove t
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			pp tt
+		remove t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		remove
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		t
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		remove t
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		t from
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			oooo pp tt
+		remove t from
+		3
+
