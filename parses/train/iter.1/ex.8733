@@ -1,3 +1,45 @@
+ee bbw eijaa ||| move w to the beginning of the 2 group
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eijaa
+		2
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			bbw eijaa
+		2
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ee bbw eijaa
+		2
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eijaa
+		2
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			bbw eijaa
+		2
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ee bbw eijaa
+		2
+		false
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eijaa
+		2
+
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			bbw eijaa
@@ -6,11 +48,6 @@
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ee bbw eijaa
-		2
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eijaa
 		2
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
@@ -22,102 +59,66 @@
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		ee bbw eijaa
 
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			bbw eijaa
-		2
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ee bbw eijaa
-		2
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			bbw eijaa
-		2
-		false
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ee bbw eijaa
-		2
-		false
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eijaa
-		2
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eijaa
-		2
-		false
-
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		ee
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		bbw
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		move
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		w
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		to
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eijaa
-		the
-		2
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eijaa
-		beginning
-		2
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eijaa
-		of
-		2
-
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		the
 		2
 
 	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eijaa
+		beginning
+		2
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eijaa
+		of
+		2
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eijaa
+		the
+		2
+
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eijaa
 		ee

@@ -1,3 +1,10 @@
+aa lljt trtt ||| remove l from the front of group 2
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			trtt
+		2
+		true
+
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			lljt trtt
@@ -12,6 +19,12 @@
 
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			trtt
+		2
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			lljt trtt
 		2
 		false
@@ -22,17 +35,20 @@
 		2
 		false
 
-	edu.stanford.nlp.sempre.SFun.remove
+	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			trtt
 		2
-		true
 
-	edu.stanford.nlp.sempre.SFun.remove
+	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
-			trtt
+			lljt trtt
 		2
-		false
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			aa lljt trtt
+		2
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		trtt
@@ -42,21 +58,6 @@
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		aa lljt trtt
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			lljt trtt
-		2
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aa lljt trtt
-		2
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			trtt
-		2
 
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState

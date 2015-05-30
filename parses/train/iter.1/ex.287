@@ -1,3 +1,16 @@
+aa hh jj ||| switch the 1 and 2 group
+	edu.stanford.nlp.sempre.SFun.swap
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			jj
+		1
+		2
+
+	edu.stanford.nlp.sempre.SFun.swap
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			jj
+		2
+		1
+
 	edu.stanford.nlp.sempre.SFun.swap
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			hh jj
@@ -19,18 +32,6 @@
 	edu.stanford.nlp.sempre.SFun.swap
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			aa hh jj
-		2
-		1
-
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			jj
-		1
-		2
-
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			jj
 		2
 		1
 
@@ -50,6 +51,11 @@
 
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			jj
+		2
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			hh jj
 		1
 
@@ -68,48 +74,47 @@
 			aa hh jj
 		2
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			jj
 		1
+		true
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			jj
+		2
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			hh jj
 		1
+		true
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			hh jj
 		2
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			jj
-		2
-
-	edu.stanford.nlp.sempre.SFun.reverseGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			jj
-		2
+		true
 
 	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			jj
 		aa
 		1
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			jj
+		aa
+		2
 
 	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			jj
 		hh
 		1
-
-	edu.stanford.nlp.sempre.SFun.append
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			jj
-		aa
-		2
 
 	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState

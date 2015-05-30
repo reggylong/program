@@ -1,15 +1,4 @@
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aaaa iio ru
-		3
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aaaa iio ru
-		3
-		false
-
+aaaa iio ru ||| remove u from the end of group 3
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
@@ -24,6 +13,12 @@
 
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			aaaa iio ru
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		3
 		false
@@ -31,6 +26,12 @@
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iio ru
+		3
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			aaaa iio ru
 		3
 		false
 
@@ -45,11 +46,6 @@
 
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
-			aaaa iio ru
-		3
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		3
 
@@ -58,66 +54,71 @@
 			iio ru
 		3
 
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			aaaa iio ru
+		3
+
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		aaaa
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		iio
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		remove
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		u
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		from
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		the
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		end
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		of
 		3
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		group
 		3
 
-	edu.stanford.nlp.sempre.SFun.append
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ru
 		aaaa

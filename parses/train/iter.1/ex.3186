@@ -1,8 +1,4 @@
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll ui zzzz
-		3
-
+ll ui zzzz ||| add oz to the end of group 3
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			zzzz
@@ -11,6 +7,11 @@
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ui zzzz
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll ui zzzz
 		3
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
@@ -22,102 +23,100 @@
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		ll ui zzzz
 
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll ui zzzz
-		3
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll ui zzzz
-		3
-		false
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		3
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ui zzzz
-		3
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		3
-		false
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ui zzzz
-		3
-		false
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		ll
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		ui
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		add
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		oz
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		to
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		the
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		end
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		of
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			zzzz
-		group
-		3
-
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			zzzz
 		3
 
+	edu.stanford.nlp.sempre.SFun.reverseGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ui zzzz
+		3
+
+	edu.stanford.nlp.sempre.SFun.reverseGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll ui zzzz
+		3
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ui zzzz
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll ui zzzz
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		3
+		false
+
 	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		ll
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		ui
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		add
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		oz
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		to
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		the
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		end
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		of
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			zzzz
+		group
+		3
+
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			zzzz
 		ll

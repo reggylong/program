@@ -1,8 +1,4 @@
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			bb ee qlhoo
-		3
-
+bb ee qlhoo ||| add the letters qlhoo to the end of group 3
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			qlhoo
@@ -11,6 +7,11 @@
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ee qlhoo
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			bb ee qlhoo
 		3
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
@@ -24,11 +25,6 @@
 
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
-			bb ee qlhoo
-		3
-
-	edu.stanford.nlp.sempre.SFun.reverseGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
 			qlhoo
 		3
 
@@ -37,11 +33,10 @@
 			ee qlhoo
 		3
 
-	edu.stanford.nlp.sempre.SFun.remove
+	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			bb ee qlhoo
 		3
-		true
 
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
@@ -52,6 +47,12 @@
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ee qlhoo
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			bb ee qlhoo
 		3
 		true
 

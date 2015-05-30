@@ -1,3 +1,10 @@
+aa p iijv ||| delete group 2
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			iijv
+		2
+		true
+
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			p iijv
@@ -12,6 +19,12 @@
 
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			iijv
+		2
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			p iijv
 		2
 		false
@@ -22,17 +35,20 @@
 		2
 		false
 
-	edu.stanford.nlp.sempre.SFun.remove
+	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		2
-		true
 
-	edu.stanford.nlp.sempre.SFun.remove
+	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
-			iijv
+			p iijv
 		2
-		false
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			aa p iijv
+		2
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		iijv
@@ -43,63 +59,42 @@
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		aa p iijv
 
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			p iijv
-		2
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aa p iijv
-		2
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			iijv
-		2
-
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			p iijv
-		aa
-		2
-
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		aa
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		p
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		delete
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		group
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		aa p
 		2
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		delete group
@@ -107,17 +102,23 @@
 
 	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			p iijv
+		aa
+		2
+
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		aa
 		2
 
-	edu.stanford.nlp.sempre.SFun.append
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		p
 		2
 
-	edu.stanford.nlp.sempre.SFun.append
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			iijv
 		delete

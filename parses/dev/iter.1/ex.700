@@ -1,3 +1,4 @@
+a z ffffffff ||| place the 1 group after the 3 group
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ffffffff
@@ -5,8 +6,18 @@
 
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			ffffffff
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			z ffffffff
 		1
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			z ffffffff
+		3
 
 	edu.stanford.nlp.sempre.SFun.doubleGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState
@@ -18,25 +29,29 @@
 			a z ffffffff
 		3
 
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ffffffff
-		3
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			z ffffffff
-		3
-
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ffffffff
 		1
+		true
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ffffffff
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			z ffffffff
 		1
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			z ffffffff
+		3
+		true
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		ffffffff
@@ -47,15 +62,29 @@
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		a z ffffffff
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.swap
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ffffffff
+		1
+		3
+
+	edu.stanford.nlp.sempre.SFun.swap
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ffffffff
 		3
+		1
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
+	edu.stanford.nlp.sempre.SFun.swap
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			z ffffffff
+		1
+		3
+
+	edu.stanford.nlp.sempre.SFun.swap
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			z ffffffff
 		3
+		1
 
 	edu.stanford.nlp.sempre.SFun.swap
 		edu.stanford.nlp.sempre.SFun.parseStartState
@@ -69,49 +98,25 @@
 		3
 		1
 
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ffffffff
-		1
-		3
-
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ffffffff
-		3
-		1
-
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			z ffffffff
-		1
-		3
-
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			z ffffffff
-		3
-		1
-
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ffffffff
 		a
 		1
 
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ffffffff
+		a
+		3
+
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ffffffff
 		z
 		1
 
-	edu.stanford.nlp.sempre.SFun.prepend
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ffffffff
-		a
-		3
-
-	edu.stanford.nlp.sempre.SFun.prepend
+	edu.stanford.nlp.sempre.SFun.append
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ffffffff
 		z

@@ -1,3 +1,4 @@
+bb cc qq ||| remove b from group 1
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			qq
@@ -58,11 +59,6 @@
 			bb cc qq
 		1
 
-	edu.stanford.nlp.sempre.SFun.reverseGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			qq
-		1
-
 	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			qq
@@ -121,5 +117,10 @@
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			qq
 		bb
+		1
+
+	edu.stanford.nlp.sempre.SFun.reverseGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			qq
 		1
 

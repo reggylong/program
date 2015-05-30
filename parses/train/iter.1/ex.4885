@@ -1,15 +1,4 @@
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aas fff eeee
-		3
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aas fff eeee
-		3
-		false
-
+aas fff eeee ||| remove e from the end of the 3 group
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			eeee
@@ -24,6 +13,12 @@
 
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			aas fff eeee
+		3
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			eeee
 		3
 		false
@@ -33,6 +28,27 @@
 			fff eeee
 		3
 		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			aas fff eeee
+		3
+		false
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			eeee
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			fff eeee
+		3
+
+	edu.stanford.nlp.sempre.SFun.doubleGroup
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			aas fff eeee
+		3
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		eeee
@@ -42,21 +58,6 @@
 
 	edu.stanford.nlp.sempre.SFun.parseStartState
 		aas fff eeee
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			aas fff eeee
-		3
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			eeee
-		3
-
-	edu.stanford.nlp.sempre.SFun.doubleGroup
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			fff eeee
-		3
 
 	edu.stanford.nlp.sempre.SFun.reverseGroup
 		edu.stanford.nlp.sempre.SFun.parseStartState

@@ -1,7 +1,14 @@
+aa ii ll ||| remove 1 i from group 2
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ll
 		1
+		true
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll
+		2
 		true
 
 	edu.stanford.nlp.sempre.SFun.remove
@@ -36,6 +43,12 @@
 
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll
+		2
+		false
+
+	edu.stanford.nlp.sempre.SFun.remove
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			ii ll
 		1
 		false
@@ -43,18 +56,6 @@
 	edu.stanford.nlp.sempre.SFun.remove
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ii ll
-		2
-		false
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll
-		2
-		true
-
-	edu.stanford.nlp.sempre.SFun.remove
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll
 		2
 		false
 
@@ -69,6 +70,18 @@
 
 	edu.stanford.nlp.sempre.SFun.swap
 		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll
+		1
+		2
+
+	edu.stanford.nlp.sempre.SFun.swap
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll
+		2
+		1
+
+	edu.stanford.nlp.sempre.SFun.swap
+		edu.stanford.nlp.sempre.SFun.parseStartState
 			ii ll
 		1
 		2
@@ -91,37 +104,25 @@
 		2
 		1
 
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll
-		1
-		2
-
-	edu.stanford.nlp.sempre.SFun.swap
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll
-		2
-		1
-
-	edu.stanford.nlp.sempre.SFun.append
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ll
 		aa
 		1
 
-	edu.stanford.nlp.sempre.SFun.append
+	edu.stanford.nlp.sempre.SFun.prepend
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			ll
+		aa
+		2
+
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ll
 		ii
 		1
 
-	edu.stanford.nlp.sempre.SFun.append
-		edu.stanford.nlp.sempre.SFun.parseStartState
-			ll
-		aa
-		2
-
-	edu.stanford.nlp.sempre.SFun.append
+	edu.stanford.nlp.sempre.SFun.prepend
 		edu.stanford.nlp.sempre.SFun.parseStartState
 			ll
 		ii
