@@ -60,6 +60,7 @@ def prepareTrainExamples(trainDir, word_to_ind_path, verbose=False, parsePrefix=
   exampleFiles = [f for f in os.listdir(trainDir) if os.path.isfile(os.path.join(trainDir, f)) and len(f.split(parsePrefix)) > 1]
   for filename in exampleFiles: 
     trainingSet.append(convertExampleToTree(os.path.join(trainDir, filename), wordToInds, verbose=verbose))
+    print(len(trainingSet))
     if verbose:
       print("Finished example " + filename)
   return trainingSet

@@ -41,8 +41,8 @@ def alphagen(N, alphastart):
         yield curralpha
 
 simpleEmbedder = SimpleLinear(W = wv, alpha=0.002)
-rand_gen = randgen(N=10000, ntrain=len(trainingSet) - 1)
-alpha_gen = alphagen(N=10000, alphastart = 0.002)
+rand_gen = randgen(N=100000, ntrain=len(trainingSet) - 1)
+alpha_gen = alphagen(N=100000, alphastart = 0.002)
 simpleEmbedder.train_sgd(trainingSet, trainUtters, rand_gen, simpleEmbedder.annealiter(0.002, 300000), printevery=1000, costevery=1000)
 write_pickle("models/", simpleEmbedder, saveFile)
 predictions = simpleEmbedder.predict(devSet, devUtters)
