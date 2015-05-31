@@ -3,14 +3,7 @@ import sys
 import os
 from parseTree import ParseNode
 import pickle
-
-args = sys.argv
-utteranceFile = args[1]
-wordDictFile = args[2]
-utterancePickle = args[3]
-utterSet = open(utteranceFile, "r")
-wordDict = pickle.load(open(wordDictFile, "rb"))
-utterList = []
+from data_utils import *
 
 #def treeToArrays(node):
 #  currArray = []
@@ -24,15 +17,31 @@ utterList = []
 #  currArray.append((node.parseString, node.strInds))
 #  return currArray
 
-for line in utterSet:
-  if len(line.split()) > 0 and line.split()[0] == "(utterance":
-    blockList = []
-    line = line.split('"')[1]
-    for block in line.split("|||"):
-      blockInds = []
-      for word in block.split():
-        blockInds.append(wordDict[word])
-      blockList.append(blockInds)
-    utterList.append(blockList)  
+def convertExample(exFile, wordDict, verbose=False):
+  f = open(exFile, "r")
+  firstline = f.readline()
+  blockList = []
+  for block in firstline.split("|||"):
+    blockInds = []
+    for word in block.split():
+      blockInds.append(wordDict[word])
+    blockList.append(blockInds)
+  return blockList  
 
-pickle.dump(utterList, open(utterancePickle, "wb"))
+def prepareUtteranceExamples(trainDir, word_to_ind_path, verbose=False, parsePrefix=""):
+  trainingSet = []
+  wordToInds = load_pickle(word_to_ind_path)
+  exampleFiles = [f for f in os.listdir(trainDir) if os.path.isfile(os.path.join(trainDir, f)) and len(f.split(parsePrefix)) > 1]
+  for filename in exampleFiles: 
+    trainingSet.append(convertExample(os.path.join(trainDir, filename), wordToInds, verbose=verbose))
+    if verbose:
+      print("Finished example " + filename)
+  return trainingSet
+
+if __name__ == "__main__":
+  args = sys.argv
+  examples = args[1]
+  savename = args[2]
+  parsePrefix = args[3]
+  trainingSet = prepareUtteranceExamples(examples, "../data/word_to_index.pkl", verbose=True, parsePrefix=parsePrefix)
+  pickle.dump(trainingSet, open(savename, "wb"))

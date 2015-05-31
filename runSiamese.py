@@ -8,25 +8,24 @@ from siamese.siamese import *
 import itertools
 from numpy import *
 
-random.seed(100)
 args = sys.argv
-devCutoff = int(args[1])
+trainUtterSet = load_pickle(args[1])
 trainingExamples = load_pickle(args[2])
 correctExamples = load_pickle(args[3])
-utterances = load_pickle(args[4])
-zipAll = [(all, correct[0], utter) for all, correct, utter in zip(trainingExamples, correctExamples, utterances[:devCutoff]) if len(correct) > 0]
+devUtterSet = load_pickle(args[4])
+zipAll = [(all, correct[0], utter) for all, correct, utter in zip(trainingExamples, correctExamples, trainUtterSet) if len(correct) > 0]
 trainingSet = [(all, correct) for all, correct, utter in zipAll]
 trainUtters = [utter for all, correct, utter in zipAll]
 devExamples = load_pickle(args[5])
 devCorrect = load_pickle(args[6])
-zipAll = [(all, correct[0], utter) for all, correct, utter in zip(devExamples, devCorrect, utterances[devCutoff:]) if len(correct) > 0]
+zipAll = [(all, correct[0], utter) for all, correct, utter in zip(devExamples, devCorrect, devUtterSet) if len(correct) > 0]
 devSet = [(all, correct) for all, correct, utter in zipAll]
 devUtters = [utter for all, correct, utter in zipAll]
 vectorDim = int(args[7])
 saveFile = args[8]
 #if len(args) > 9:
 #  loadFile = args[9]
-#  siamese = load
+#  simpleEmbedder = load
 worddict = load_pickle("data/word_to_index.pkl")
 wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
 W = sqrt(0.1) * random.standard_normal((350, vectorDim))

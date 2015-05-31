@@ -20,7 +20,8 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
   totalTreeLines = []
   currTreeLines = []
   treeList = []
-  for line in f:
+  for ind, line in enumerate(f):
+    if ind == 0: continue
     if line.rstrip() == "": 
       totalTreeLines.append(currTreeLines)
       currTreeLines = []
