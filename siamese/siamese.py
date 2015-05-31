@@ -10,7 +10,7 @@ def checkListsEqual(list1, list2):
     for l1, l2 in itertools.izip(list1, list2):
         if l1 != l2:
             return False
-        return True
+    return True
 
 def checkParseEqual(parse1, parse2):
     if len(parse1) != len(parse2):
@@ -18,7 +18,7 @@ def checkParseEqual(parse1, parse2):
     for list1, list2 in itertools.izip(parse1, parse2):
         if not checkListsEqual(list1, list2):
             return False
-        return True
+    return True
 
 class SiameseNet(NNBase):
 
