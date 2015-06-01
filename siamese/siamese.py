@@ -101,45 +101,51 @@ class SiameseNet(NNBase):
 
         h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
         h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
-
-        #dist = sum((h1 - h2)**2) 
-        #contrast = rand.choice(all_parses)
-        #input_c, command_c = contrast
-        #while checkListsEqual(command_c,command_a):
-        #    contrast = rand.choice(all_parses)
-        #    input_c, command_c = contrast
+        """
+        dist = sum((h1 - h2)**2) 
+        contrast = rand.choice(all_parses)
+        input_c, command_c = contrast
+        while checkListsEqual(command_c,command_a):
+            contrast = rand.choice(all_parses)
+            input_c, command_c = contrast
         
-        #counter_c = collections.Counter()
-        #x3 = zeros(self.hdim)
-        #for idx in itertools.chain(input_c, command_c):
-        #    counter_c[idx] += 1.0
-        #    x3 += self.sparams.L[idx]
+        counter_c = collections.Counter()
+        x3 = zeros(self.hdim)
+        for idx in itertools.chain(input_c, command_c):
+            counter_c[idx] += 1.0
+            x3 += self.sparams.L[idx]
 
         # Contrastive Loss
-        #h3 = self.tanh(self.params.W.dot(x3) + self.params.b)
-        #contrast_dist = sum((h1 - h3)**2)
+        h3 = self.tanh(self.params.W.dot(x3) + self.params.b)
+        contrast_dist = sum((h1 - h3)**2)
 
-        #margin = max(0, self.margin - contrast_dist) 
+        margin = max(0, self.margin - contrast_dist) 
+        """
         # Backward propagation
         z1 = (h1 - h2) * self.tanh_grad(h1)
         z2 = (h2 - h1) * self.tanh_grad(h2)
         #z3 = (h3 - h1) * self.tanh_grad(h3)
 
         self.grads.b += (z1 + z2) 
-        self.grads.W +=  (outer(z1, x1) + outer(z2, x2))         
-        #if margin > 0:
-        #    self.grads.b += -1 * margin * (z1 + z3) 
-        #    self.grads.W += -1 * margin * (outer(z1, x1) + outer(z3,x3))
-        #    Lcgrad = self.params.W.T.dot(z3)
-        #    for k,v in counter_q.iteritems():
-        #        self.sgrads.L[k] = -1 * margin * v * Lcgrad
+        self.grads.W +=  (outer(z1, x1) + outer(z2, x2))    
+        """
+        if margin > 0:
+            self.grads.b += -1 * margin * (z1 + z3) 
+            self.grads.W += -1 * margin * (outer(z1, x1) + outer(z3,x3))
+            Lcgrad = self.params.W.T.dot(z3)
+            for k,v in counter_q.iteritems():
+                continue
+                self.sgrads.L[k] = -1 * margin * v * Lcgrad
+        """
         self.grads.W += self.reg * self.params.W
 
         Lqgrad = self.params.W.T.dot(z1)
         Lagrad = self.params.W.T.dot(z2)
         for k,v in counter_q.iteritems():
+            continue
             self.sgrads.L[k] = v * Lqgrad
         for k,v in counter_a.iteritems():
+            continue
             self.sgrads.L[k] = v * Lagrad
 
     def compute_single_loss(self, question, answers):

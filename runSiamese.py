@@ -8,6 +8,7 @@ from siamese.siamese import *
 import itertools
 from numpy import *
 
+random.seed(918237)
 args = sys.argv
 trainUtterSet = load_pickle(args[1])
 trainingExamples = load_pickle(args[2])
@@ -31,7 +32,7 @@ wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
 W = sqrt(0.1) * random.standard_normal((350, vectorDim))
 
 siamese = SiameseNet(wv, W, alpha=0.002)
-siamese.train_sgd(trainUtters, trainingSet, siamese.randomiter(100000, 1427), printevery=10000, costevery=10000)
+siamese.train_sgd(trainUtters, trainingSet, siamese.randomiter(100000, 4000), printevery=10000, costevery=10000)
 write_pickle("models/", siamese, saveFile)
 predictions = siamese.predict(devUtters, devSet)
 print("Dev loss: " + str(siamese.compute_display_loss(devUtters, devSet)))
