@@ -26,7 +26,6 @@ saveFile = args[8]
 #  loadFile = args[9]
 #  recurrent = load
 worddict = load_pickle("data/word_to_index.pkl")
-wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
 
 def randgen(N, ntrain):
     for i in range(N): 
@@ -40,9 +39,10 @@ def alphagen(N, alphastart):
             curralpha /= 3 
         yield curralpha
 
+wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
 recurrent = RNN(wv, alpha=0.002, bptt = 3)
-rand_gen = randgen(N=100000, ntrain=len(trainingSet) - 1)
-alpha_gen = alphagen(N=100000, alphastart = 0.002)
+rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
+alpha_gen = alphagen(N=1000000, alphastart = 0.002)
 recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=10000)
 write_pickle("models/", recurrent, saveFile)
 predictions = recurrent.predict(devSet, devUtters)

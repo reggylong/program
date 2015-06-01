@@ -151,7 +151,7 @@ class RNN(NNBase):
         Do not modify this function!
         """
         bptt_old = self.bptt
-        self.bptt = len(y)
+        self.bptt = 100
         print >> outfd, "NOTE: temporarily setting self.bptt = len(y) = %d to compute true gradient." % self.bptt
         NNBase.grad_check(self, x, y, outfd=outfd, **kwargs)
         self.bptt = bptt_old
@@ -183,7 +183,7 @@ class RNN(NNBase):
             self.calc_hidden_vec(input_a, hs_inputa, n_inputa)
             self.calc_hidden_vec(command_a, hs_commanda, n_commanda)
             
-            acombine = concatenate((hs_inputq[n_inputq], hs_inputa[n_inputa]))
+            acombine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
             cost = sum((qcombine - acombine)**2)
             if cost < minCost:
                 minCostIndex = i
@@ -206,7 +206,6 @@ class RNN(NNBase):
         compute cross-entropy loss at each timestep,
         and return the sum of the point losses.
         """
-
         input_q, command_q = question
         all_parses, oracle = answers
         input_a, command_a = oracle
@@ -244,7 +243,7 @@ class RNN(NNBase):
 
         Do not modify this function!
         """
-        if not isinstance(X[0][0], collections.Iterable): # single example
+        if not isinstance(Y[0][0], collections.Iterable): # single example
             return self.compute_single_loss(X, Y)
         else: # multiple examples
             return sum([self.compute_single_loss(answers, question)
@@ -261,6 +260,7 @@ class RNN(NNBase):
         return J / float(ntot)
 
 if __name__ == "__main__":
-    rnn = RNN(sqrt(0.1)*random.standard_normal(5, 5))
-    
-    
+    rnn = RNN(sqrt(0.1)*random.standard_normal((1000, 5)))
+    utterExample = [[411, 339, 46], [341, 591, 83, 355, 175]]
+    trainExample = ([([411, 339, 46], [341, 591, 83, 355, 175])], ([21, 1], [2, 3, 4]))
+    rnn.grad_check(trainExample, utterExample)
