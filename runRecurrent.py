@@ -40,8 +40,8 @@ def alphagen(N, alphastart):
         yield curralpha
 
 wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
-recurrent = RNN(wv, alpha=0.002, bptt = 3)
-rand_gen = randgen(N=1000000, ntrain=50)
+recurrent = RNN(wv, backpropwv=True, alpha=0.002, bptt = 3)
+rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
 alpha_gen = alphagen(N=1000000, alphastart = 0.002)
 recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=10000)
 write_pickle("models/", recurrent, saveFile)

@@ -47,12 +47,12 @@ class RNN(NNBase):
         return A0
 
 
-    def __init__(self, L0, 
-                 alpha=0.005, rseed=10, bptt=1):
+    def __init__(self, L0, middledim=30, reg=1e-5,
+                 margin=1, backpropwv=False, alpha=0.005, rseed=10, bptt=1):
 
         self.hdim = L0.shape[1] # word vector dimensions
         self.vdim = L0.shape[0] # vocab size
-        param_dims = dict(H = (self.hdim, self.hdim))
+        param_dims = dict(H = (self.hdim, self.hdim), W = (middledim, 2*self.hdim), b = (middledim))
         # note that only L gets sparse updates
         param_dims_sparse = dict(L = L0.shape)
         NNBase.__init__(self, param_dims, param_dims_sparse)
@@ -65,8 +65,14 @@ class RNN(NNBase):
         
         self.params.H = self.random_weight_matrix(*self.params.H.shape)
         
+        self.params.W = self.random_weight_matrix(*self.params.W.shape)
+        self.params.b = zeros(*self.params.b.shape)
+
+        self.reg = reg
         self.bptt = bptt
         self.alpha = alpha
+        self.backpropwv = backpropwv
+        self.margin = margin
         #### END YOUR CODE ####
 
     def sigmoid(self, x):
@@ -97,6 +103,17 @@ class RNN(NNBase):
             self.sgrads.L[xs[i - j]] = dsig
             dh_curr = dot(self.params.H.T, dsig)
 
+    def sample_neg(self, answers, question):
+        if len(answers[0]) > 1:
+            answer = answers[1]
+            neg_answer_ind = random.randint(0, len(answers[0]) - 1)
+            while checkParseEqual(answers[0][neg_answer_ind], answer):
+                neg_answer_ind = random.randint(0, len(answers[0]) - 1)
+            return answers[0][neg_answer_ind]
+        else: 
+            # if there's only one correct parse create janky neg....
+            return [[random.randint(0, self._param_dims_sparse['L'][0] - 1)], [random.randint(0, self._param_dims_sparse['L'][0] - 1)]]   
+    
     def _acc_grads(self, answers, question):
         """
         Question is (input, command) where both are lists of indices into the word dict.
@@ -125,22 +142,68 @@ class RNN(NNBase):
         self.calc_hidden_vec(input_a, hs_inputa, n_inputa)
         self.calc_hidden_vec(command_a, hs_commanda, n_commanda)
         
-        # Backward propagation through time
+        # Negative sampling
+        
+        input_neg, command_neg = self.sample_neg(answers, question)
+        n_inputneg = len(input_neg)
+        n_commandneg = len(command_neg)
+        
+        hs_inputneg = zeros((n_inputneg + 1, self.hdim))
+        hs_commandneg = zeros((n_commandneg + 1, self.hdim))
+
+        self.calc_hidden_vec(input_neg, hs_inputneg, n_inputneg)
+        self.calc_hidden_vec(command_neg, hs_commandneg, n_commandneg)
+        neg_combine = concatenate((hs_inputneg[n_inputneg], hs_commandneg[n_commandneg]))
+        hvec_neg = self.sigmoid(dot(self.params.W, neg_combine) + self.params.b)    
+        
+        # Forward for question, answer vectors
+
         q_combine = concatenate((hs_inputq[n_inputq], hs_commandq[n_commandq]))
         a_combine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
         
-        diff = q_combine - a_combine
-
-        delta_inputq = diff[0:self.hdim]
-        delta_commandq = diff[self.hdim:]
-        delta_inputa = -diff[0:self.hdim]
-        delta_commanda = -diff[self.hdim:]
+    
+        hvec_q = self.sigmoid(dot(self.params.W, q_combine) + self.params.b)
+        hvec_a = self.sigmoid(dot(self.params.W, a_combine) + self.params.b)        
+    
+        # For negative sampling, backprop steps
+        diff = hvec_q - hvec_a
+        diffneg = hvec_q - hvec_neg
+        margin = max(0, self.margin - sum(diffneg**2) + sum(diff**2))
+        if not margin > 0: return
         
+        delta_qneg = -self.sig_grad(hvec_q)*diffneg
+        delta_neg = self.sig_grad(hvec_neg)*diffneg
+        self.grads.W += outer(delta_qneg, q_combine) + outer(delta_neg, neg_combine)
+        self.grads.b += delta_qneg + delta_neg
+
+        delta_q = self.sig_grad(hvec_q)*diff
+        delta_a = self.sig_grad(hvec_a)*(-diff)
+        self.grads.W += outer(delta_q, q_combine) + outer(delta_a, a_combine)
+        self.grads.b += delta_q + delta_a
+
+        self.grads.W += self.reg*self.params.W
+        
+
+        if not self.backpropwv: return
+
+        d_qcombine = dot(self.params.W.T, delta_q + delta_qneg)
+        d_acombine = dot(self.params.W.T, delta_a)
+        d_negcombine = dot(self.params.W.T, delta_neg)    
+    
+        delta_inputq = d_qcombine[0:self.hdim]
+        delta_commandq = d_qcombine[self.hdim:]
+        delta_inputa = d_acombine[0:self.hdim]
+        delta_commanda = d_acombine[self.hdim:]
+        delta_inputneg = d_negcombine[0:self.hdim]
+        delta_commandneg = d_negcombine[self.hdim:]        
+
         self.calc_backprop(input_q, hs_inputq, delta_inputq)
         self.calc_backprop(input_a, hs_inputa, delta_inputa)
         self.calc_backprop(command_q, hs_commandq, delta_commandq)
         self.calc_backprop(command_a, hs_commanda, delta_commanda)
-
+        self.calc_backprop(command_neg, hs_commandneg, delta_commandneg)
+        self.calc_backprop(input_neg, hs_inputneg, delta_inputneg)
+    
     def grad_check(self, x, y, outfd=sys.stderr, **kwargs):
         """
         Wrapper for gradient check on RNNs;
@@ -171,6 +234,8 @@ class RNN(NNBase):
         self.calc_hidden_vec(command_q, hs_commandq, n_commandq)
         
         qcombine = concatenate((hs_inputq[n_inputq], hs_commandq[n_commandq]))
+        hvec_q = self.sigmoid(dot(self.params.W, qcombine) + self.params.b)
+
         minCost = inf
         minCostIndex = -1   
         
@@ -184,7 +249,9 @@ class RNN(NNBase):
             self.calc_hidden_vec(command_a, hs_commanda, n_commanda)
             
             acombine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
-            cost = sum((qcombine - acombine)**2)
+            hvec_a = self.sigmoid(dot(self.params.W, acombine) + self.params.b)
+
+            cost = sum((hvec_q - hvec_a)**2)
             if cost < minCost:
                 minCostIndex = i
                 minCost = cost
@@ -228,12 +295,35 @@ class RNN(NNBase):
         self.calc_hidden_vec(command_q, hs_commandq, n_commandq)
         self.calc_hidden_vec(input_a, hs_inputa, n_inputa)
         self.calc_hidden_vec(command_a, hs_commanda, n_commanda)
+ 
+        # Negative sampling
         
-        # Backward propagation through time
+        input_neg, command_neg = self.sample_neg(answers, question)
+        n_inputneg = len(input_neg)
+        n_commandneg = len(command_neg)
+        
+        hs_inputneg = zeros((n_inputneg + 1, self.hdim))
+        hs_commandneg = zeros((n_commandneg + 1, self.hdim))
+
+        self.calc_hidden_vec(input_neg, hs_inputneg, n_inputneg)
+        self.calc_hidden_vec(command_neg, hs_commandneg, n_commandneg)
+        neg_combine = concatenate((hs_inputneg[n_inputneg], hs_commandneg[n_commandneg]))
+        hvec_neg = self.sigmoid(dot(self.params.W, neg_combine) + self.params.b)    
+       
+        # Forward for question, answer vectors
+
         q_combine = concatenate((hs_inputq[n_inputq], hs_commandq[n_commandq]))
         a_combine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
- 
-        J = 0.5*(sum((q_combine - a_combine)**2))
+        
+    
+        hvec_q = self.sigmoid(dot(self.params.W, q_combine) + self.params.b)
+        hvec_a = self.sigmoid(dot(self.params.W, a_combine) + self.params.b)        
+    
+        # For negative sampling, backprop steps
+        diff = hvec_q - hvec_a
+        diffneg = hvec_q - hvec_neg
+        margin = max(0, self.margin - 0.5*sum(diffneg**2) + 0.5*sum(diff**2))
+        J = margin + 0.5*self.reg*sum(self.params.W**2)
         return J
 
     def compute_loss(self, X, Y):
@@ -260,7 +350,7 @@ class RNN(NNBase):
         return J / float(ntot)
 
 if __name__ == "__main__":
-    rnn = RNN(sqrt(0.1)*random.standard_normal((1000, 5)))
+    rnn = RNN(sqrt(0.1)*random.standard_normal((1000, 5)), backpropwv = True)
     utterExample = [[411, 339, 46], [341, 591, 83, 355, 175]]
     trainExample = ([([411, 339, 46], [341, 591, 83, 355, 175])], ([21, 1], [2, 3, 4]))
     rnn.grad_check(trainExample, utterExample)
