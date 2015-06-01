@@ -22,13 +22,10 @@ zipAll = [(all, correct[0], utter) for all, correct, utter in zip(devExamples, d
 devSet = [(all, correct) for all, correct, utter in zipAll]
 devUtters = [utter for all, correct, utter in zipAll]
 vectorDim = int(args[7])
-middleDim = int(args[8])
-saveFile = args[9]
-oldRNN = None
-if len(args) > 10:
-  loadFile = args[10]
-  oldRNN = load_pickle(loadFile)
-
+saveFile = args[8]
+#if len(args) > 9:
+#  loadFile = args[9]
+#  recurrent = load
 worddict = load_pickle("data/word_to_index.pkl")
 
 def randgen(N, ntrain):
@@ -42,29 +39,11 @@ def alphagen(N, alphastart):
         if i % (N/2) == 0:
             curralpha /= 3 
         yield curralpha
-recurrent = None
-if oldRNN is None:
-  wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
-  recurrent = RNN(wv, middledim = middleDim, backpropwv=True, alpha=0.002, bptt = 3)
-else:
-  wv = oldRNN.sparams.L
-  H = oldRNN.params.H
-  recurrent = RNN(wv, middledim = middleDim, backpropwv=False, alpha=0.002, bptt = 3)
-  recurrent.params.H = H
-rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
-alpha_gen = alphagen(N=1000000, alphastart = 0.002)
-recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=100000)
+
+wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
+recurrent = RNNLM(wv, alpha=0.002, bptt = 3)
+rand_gen = randgen(N=600000, ntrain=len(trainingSet) - 1)
+alpha_gen = alphagen(N=600000, alphastart = 0.002)
+recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=10000)
 write_pickle("models/", recurrent, saveFile)
-predictions = recurrent.predict(devSet, devUtters)
 print("Dev loss: " + str(recurrent.compute_display_loss(devSet, devUtters)))
-correct = 0
-trainpredictions = recurrent.predict(trainingSet, trainUtters)
-for ind, predict in enumerate(trainpredictions): 
-    if checkParseEqual(trainingSet[ind][1], trainingSet[ind][0][predict]):
-        correct += 1
-print("Train accuracy " + str(float(correct)/len(trainpredictions)))
-correct = 0
-for ind, predict in enumerate(predictions): 
-    if checkParseEqual(devSet[ind][1], devSet[ind][0][predict]):
-        correct += 1
-print("Accuracy " + str(float(correct)/len(predictions)))
