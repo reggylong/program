@@ -15,7 +15,7 @@ def plot_wvecs(filename):
             reduced_word_to_index[k] = v
     
     indices = [word_to_index[k] for k, v in reduced_word_to_index.iteritems()]
-    words = [index_to_word[i] for i in indices]
+    words = [index_to_word[i].replace("edu.stanford.nlp.sempre.","") for i in indices]
     word_vecs = [wv[i] for i in indices]
 
     temp = (word_vecs - np.mean(word_vecs, axis=0))
