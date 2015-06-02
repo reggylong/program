@@ -30,5 +30,6 @@ def plot_wvecs(filename):
     plt.ylim((np.min(coord[:,1]), np.max(coord[:,1])))
     plt.show()
 
-f = "../data/siamese_word_vectors.pkl"
+f = "../data/recurrent_wv.pkl"
 plot_wvecs(f)
+

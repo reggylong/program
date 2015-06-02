@@ -119,9 +119,16 @@ class RNN(NNBase):
         Question is (input, command) where both are lists of indices into the word dict.
         Answers is ([all parses], oracle parse) where both are list of 
         """
+        #rand.seed(1)
         input_q, command_q = question
         all_parses, oracle = answers
         input_a, command_a = oracle
+
+        input_q = input_q[::-1]
+        input_a = input_a[::-1]
+        command_q = command_q[::-1]
+        command_a = command_a[::-1]
+
 
         n_inputq = len(input_q)
         n_commandq = len(command_q)
@@ -145,6 +152,8 @@ class RNN(NNBase):
         # Negative sampling
         
         input_neg, command_neg = self.sample_neg(answers, question)
+        input_neg = input_neg[::-1]
+        command_neg = command_neg[::-1]
         n_inputneg = len(input_neg)
         n_commandneg = len(command_neg)
         
@@ -154,7 +163,7 @@ class RNN(NNBase):
         self.calc_hidden_vec(input_neg, hs_inputneg, n_inputneg)
         self.calc_hidden_vec(command_neg, hs_commandneg, n_commandneg)
         neg_combine = concatenate((hs_inputneg[n_inputneg], hs_commandneg[n_commandneg]))
-        hvec_neg = self.sigmoid(dot(self.params.W, neg_combine) + self.params.b)    
+        hvec_neg = self.tanh(dot(self.params.W, neg_combine) + self.params.b)    
         
         # Forward for question, answer vectors
 
@@ -162,8 +171,8 @@ class RNN(NNBase):
         a_combine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
         
     
-        hvec_q = self.sigmoid(dot(self.params.W, q_combine) + self.params.b)
-        hvec_a = self.sigmoid(dot(self.params.W, a_combine) + self.params.b)        
+        hvec_q = self.tanh(dot(self.params.W, q_combine) + self.params.b)
+        hvec_a = self.tanh(dot(self.params.W, a_combine) + self.params.b)        
     
         # For negative sampling, backprop steps
         diff = hvec_q - hvec_a
@@ -171,13 +180,13 @@ class RNN(NNBase):
         margin = max(0, self.margin - sum(diffneg**2) + sum(diff**2))
         if not margin > 0: return
         
-        delta_qneg = -self.sig_grad(hvec_q)*diffneg
-        delta_neg = self.sig_grad(hvec_neg)*diffneg
+        delta_qneg = -self.tanh_grad(hvec_q)*diffneg
+        delta_neg = self.tanh_grad(hvec_neg)*diffneg
         self.grads.W += outer(delta_qneg, q_combine) + outer(delta_neg, neg_combine)
         self.grads.b += delta_qneg + delta_neg
 
-        delta_q = self.sig_grad(hvec_q)*diff
-        delta_a = self.sig_grad(hvec_a)*(-diff)
+        delta_q = self.tanh_grad(hvec_q)*diff
+        delta_a = self.tanh_grad(hvec_a)*(-diff)
         self.grads.W += outer(delta_q, q_combine) + outer(delta_a, a_combine)
         self.grads.b += delta_q + delta_a
 
@@ -224,7 +233,8 @@ class RNN(NNBase):
     def predict_single(self, answers, question):
         input_q, command_q = question
         all_parses, oracle = answers
-        
+        input_q = input_q[::-1]
+        command_q = command_q[::-1]
         n_inputq = len(input_q)
         n_commandq = len(command_q)
         hs_inputq = zeros((n_inputq + 1, self.hdim))
@@ -234,13 +244,15 @@ class RNN(NNBase):
         self.calc_hidden_vec(command_q, hs_commandq, n_commandq)
         
         qcombine = concatenate((hs_inputq[n_inputq], hs_commandq[n_commandq]))
-        hvec_q = self.sigmoid(dot(self.params.W, qcombine) + self.params.b)
+        hvec_q = self.tanh(dot(self.params.W, qcombine) + self.params.b)
 
         minCost = inf
         minCostIndex = -1   
         
         for i, candidate in enumerate(all_parses):
             input_a, command_a = candidate
+            input_a = input_a[::-1]
+            command_a = command_a[::-1]
             n_inputa = len(input_a)
             n_commanda = len(command_a)
             hs_inputa = zeros((n_inputa + 1, self.hdim))
@@ -249,7 +261,7 @@ class RNN(NNBase):
             self.calc_hidden_vec(command_a, hs_commanda, n_commanda)
             
             acombine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
-            hvec_a = self.sigmoid(dot(self.params.W, acombine) + self.params.b)
+            hvec_a = self.tanh(dot(self.params.W, acombine) + self.params.b)
 
             cost = sum((hvec_q - hvec_a)**2)
             if cost < minCost:
@@ -273,9 +285,15 @@ class RNN(NNBase):
         compute cross-entropy loss at each timestep,
         and return the sum of the point losses.
         """
+        #rand.seed(1)
         input_q, command_q = question
         all_parses, oracle = answers
         input_a, command_a = oracle
+        input_q = input_q[::-1]
+        input_a = input_a[::-1]
+        command_q = command_q[::-1]
+        command_a = command_a[::-1]
+
 
         n_inputq = len(input_q)
         n_commandq = len(command_q)
@@ -299,16 +317,17 @@ class RNN(NNBase):
         # Negative sampling
         
         input_neg, command_neg = self.sample_neg(answers, question)
+        input_neg = input_neg[::-1]
+        command_neg = command_neg[::-1]
         n_inputneg = len(input_neg)
         n_commandneg = len(command_neg)
-        
         hs_inputneg = zeros((n_inputneg + 1, self.hdim))
         hs_commandneg = zeros((n_commandneg + 1, self.hdim))
 
         self.calc_hidden_vec(input_neg, hs_inputneg, n_inputneg)
         self.calc_hidden_vec(command_neg, hs_commandneg, n_commandneg)
         neg_combine = concatenate((hs_inputneg[n_inputneg], hs_commandneg[n_commandneg]))
-        hvec_neg = self.sigmoid(dot(self.params.W, neg_combine) + self.params.b)    
+        hvec_neg = self.tanh(dot(self.params.W, neg_combine) + self.params.b)    
        
         # Forward for question, answer vectors
 
@@ -316,8 +335,8 @@ class RNN(NNBase):
         a_combine = concatenate((hs_inputa[n_inputa], hs_commanda[n_commanda]))
         
     
-        hvec_q = self.sigmoid(dot(self.params.W, q_combine) + self.params.b)
-        hvec_a = self.sigmoid(dot(self.params.W, a_combine) + self.params.b)        
+        hvec_q = self.tanh(dot(self.params.W, q_combine) + self.params.b)
+        hvec_a = self.tanh(dot(self.params.W, a_combine) + self.params.b)        
     
         # For negative sampling, backprop steps
         diff = hvec_q - hvec_a
