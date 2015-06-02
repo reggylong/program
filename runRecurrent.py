@@ -45,11 +45,11 @@ def alphagen(N, alphastart):
 recurrent = None
 if oldRNN is None:
   wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
-  recurrent = RNN(wv, middledim = middleDim, backpropwv=True, alpha=0.002, bptt = 3)
+  recurrent = RNN(wv, middledim = middleDim, backpropwv=True, alpha=0.002, bptt = 4)
 else:
   wv = oldRNN.sparams.L
   H = oldRNN.params.H
-  recurrent = RNN(wv, middledim = middleDim, backpropwv=False, alpha=0.002, bptt = 3)
+  recurrent = RNN(wv, margin=10, middledim = middleDim, backpropwv=False, alpha=0.002, bptt = 4)
   recurrent.params.H = H
 rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
 alpha_gen = alphagen(N=1000000, alphastart = 0.002)
