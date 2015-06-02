@@ -101,7 +101,6 @@ class SiameseNet(NNBase):
 
         h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
         h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
-        """
         dist = sum((h1 - h2)**2) 
         contrast = rand.choice(all_parses)
         input_c, command_c = contrast
@@ -120,7 +119,6 @@ class SiameseNet(NNBase):
         contrast_dist = sum((h1 - h3)**2)
 
         margin = max(0, self.margin - contrast_dist) 
-        """
         # Backward propagation
         z1 = (h1 - h2) * self.tanh_grad(h1)
         z2 = (h2 - h1) * self.tanh_grad(h2)
@@ -128,7 +126,6 @@ class SiameseNet(NNBase):
 
         self.grads.b += (z1 + z2) 
         self.grads.W +=  (outer(z1, x1) + outer(z2, x2))    
-        """
         if margin > 0:
             self.grads.b += -1 * margin * (z1 + z3) 
             self.grads.W += -1 * margin * (outer(z1, x1) + outer(z3,x3))
@@ -136,7 +133,6 @@ class SiameseNet(NNBase):
             for k,v in counter_q.iteritems():
                 continue
                 self.sgrads.L[k] = -1 * margin * v * Lcgrad
-        """
         self.grads.W += self.reg * self.params.W
 
         Lqgrad = self.params.W.T.dot(z1)
