@@ -1,7 +1,7 @@
 import collections
 import sys
 import os
-import pickle
+import cPickle as pickle
 from data_utils import *
 
 class ParseNode: # a node in the tree
@@ -52,6 +52,7 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
       currNode = newNode
       tabNumsOld = tabNumsNew
     treeList.append(root)
+  f.close()
   return treeList
 
 def prepareTrainExamples(trainDir, word_to_ind_path, verbose=False, parsePrefix=""):
@@ -71,4 +72,5 @@ if __name__ == "__main__":
   savename = args[2]
   parsePrefix = args[3]
   trainingSet = prepareTrainExamples(examples, "../data/word_to_index.pkl", verbose=True, parsePrefix=parsePrefix)
+  print("Done")
   pickle.dump(trainingSet, open(savename, "wb"))

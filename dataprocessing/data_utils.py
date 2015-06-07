@@ -1,5 +1,5 @@
 from collections import Counter
-import pickle
+import cPickle as pickle
 import os
 
 # We assume the only files in the director
