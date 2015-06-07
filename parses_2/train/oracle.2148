@@ -1,0 +1,15 @@
+* aa ii uu * ||| do nothing ||| add o to the end of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				o
+				number
+				2
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa ii uu

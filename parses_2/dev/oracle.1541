@@ -1,0 +1,23 @@
+* aa eeqfw ll * ||| reverse the 2 group ||| add ll to the end of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				ll
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.reverseGroup
+					var
+					g
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aa eeqfw ll

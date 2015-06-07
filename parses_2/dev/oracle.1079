@@ -1,0 +1,25 @@
+* h rr z * ||| add onc to the end of group 3 ||| add a to the front of group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				a
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					onc
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				h rr z

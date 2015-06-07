@@ -1,0 +1,25 @@
+* ee iiym ww * ||| add iiym to end of 2 group ||| swap 1 and 2 groups
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				1
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					iiym
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ee iiym ww

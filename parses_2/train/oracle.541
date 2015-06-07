@@ -1,0 +1,25 @@
+* ii k oooo * ||| add l to the end of group 1 ||| remove o from group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					l
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ii k oooo

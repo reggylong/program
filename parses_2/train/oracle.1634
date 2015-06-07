@@ -1,0 +1,25 @@
+* a ii yy * ||| add j to the front of group 1 ||| add my to the front of group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				my
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					j
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				a ii yy

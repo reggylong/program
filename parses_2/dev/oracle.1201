@@ -1,0 +1,25 @@
+* wwww rr mm * ||| add qrz to end of 1 group ||| add rr to 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				rr
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					qrz
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				wwww rr mm

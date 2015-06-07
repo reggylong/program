@@ -1,0 +1,25 @@
+* ff r yy * ||| add zru to end of 2 group ||| add rzru to end of 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				rzru
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					zru
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ff r yy

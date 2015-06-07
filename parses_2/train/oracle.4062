@@ -1,0 +1,25 @@
+* bb mmy dd * ||| add dd to group 3 ||| remove d from the end of group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					dd
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				bb mmy dd

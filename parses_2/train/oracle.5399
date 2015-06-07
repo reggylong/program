@@ -1,0 +1,25 @@
+* g pp ww * ||| add mql to the end of the 1 group ||| add j to front of 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				j
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					mql
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				g pp ww

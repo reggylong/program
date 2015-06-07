@@ -1,0 +1,25 @@
+* gg ee rr * ||| add dr to front of 3 group ||| add hw to end of 1 goup
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				hw
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					dr
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				gg ee rr

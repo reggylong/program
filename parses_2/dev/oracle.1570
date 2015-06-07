@@ -1,0 +1,23 @@
+* cc clnn a * ||| add clnn to the end of the 2 group ||| reverse the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					clnn
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				cc clnn a

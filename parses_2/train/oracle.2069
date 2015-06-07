@@ -1,0 +1,25 @@
+* j mm kk * ||| add qg to the front of the 3 group ||| add va to the front of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				va
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					qg
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				j mm kk

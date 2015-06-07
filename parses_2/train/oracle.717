@@ -1,0 +1,25 @@
+* nn llgb aa * ||| add vxw to the end of the 3 group ||| add llgb to the end of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				llgb
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					vxw
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				nn llgb aa

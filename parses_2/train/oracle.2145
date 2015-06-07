@@ -1,0 +1,25 @@
+* jj xx k * ||| add sxk to front of 3 group ||| add mje to front of 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				mje
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					sxk
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				jj xx k

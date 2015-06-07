@@ -1,0 +1,25 @@
+* nnji oo w * ||| add dc to the front of the 1 group ||| add q to the front of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				q
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					dc
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				nnji oo w

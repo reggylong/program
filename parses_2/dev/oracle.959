@@ -1,0 +1,25 @@
+* jj vv ww * ||| remove j from 1 group ||| add k at beginning of 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				k
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				jj vv ww

@@ -1,0 +1,25 @@
+* kk zz uu * ||| add pwb to front of 1 group ||| add jli to 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				jli
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					pwb
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				kk zz uu

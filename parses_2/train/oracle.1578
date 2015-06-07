@@ -1,0 +1,15 @@
+* aahpa ijv * ||| subtract an a from the beginning of group 1 ||| keep everything the same
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				1
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aahpa ijv

@@ -1,0 +1,23 @@
+* ddqpm pppp ww * ||| double the 1 group ||| add wht to the back of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				wht
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ddqpm pppp ww

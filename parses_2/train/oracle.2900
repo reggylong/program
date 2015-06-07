@@ -1,0 +1,25 @@
+* jj bb mmm * ||| swap groups 2 and 3 ||| add v to the front of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				v
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				jj bb mmm

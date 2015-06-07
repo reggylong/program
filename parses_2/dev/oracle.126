@@ -1,0 +1,25 @@
+* ff ss ww * ||| remove w from 3 group ||| add mhi to end of 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				mhi
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					3
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ff ss ww

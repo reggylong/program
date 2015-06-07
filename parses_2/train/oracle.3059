@@ -1,0 +1,25 @@
+* ll rrrr tt * ||| add rrrr to group 2 ||| add tt to group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				tt
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					rrrr
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ll rrrr tt

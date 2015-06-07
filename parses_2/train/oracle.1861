@@ -1,0 +1,25 @@
+* aa c ffff * ||| add tl to the 1 group ||| add yo to the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				yo
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					tl
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aa c ffff

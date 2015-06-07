@@ -1,0 +1,25 @@
+* bb ee jj * ||| add ee to the 2 group ||| add eeee to the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				eeee
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					ee
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				bb ee jj

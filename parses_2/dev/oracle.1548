@@ -1,0 +1,23 @@
+* oo ss yy * ||| double the 3 group ||| add yk to the back of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				yk
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				oo ss yy

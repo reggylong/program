@@ -1,0 +1,25 @@
+* aaaa ss vv * ||| add w to the front of the 3 group ||| add aaaa to group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				aaaa
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					w
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aaaa ss vv

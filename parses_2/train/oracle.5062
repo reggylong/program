@@ -1,0 +1,25 @@
+* bb ff rrei * ||| remove i to the end of the 3 group ||| add e to the front of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				e
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					3
+					boolean
+					false
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				bb ff rrei

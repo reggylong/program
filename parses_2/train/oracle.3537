@@ -1,0 +1,25 @@
+* aa gg o * ||| add j to the end of the 3 group ||| add vbs to the front of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				vbs
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					j
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aa gg o

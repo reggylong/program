@@ -1,0 +1,25 @@
+* dd ll bb * ||| add zm to the beginning of the 1 group ||| add avo to the end of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				avo
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					zm
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				dd ll bb

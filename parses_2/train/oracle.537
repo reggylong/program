@@ -1,0 +1,25 @@
+* gg ffll m * ||| cut f from the front of the 2 group ||| add g to the back of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				g
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					2
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				gg ffll m

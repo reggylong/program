@@ -1,0 +1,23 @@
+* cc nn a * ||| add lc to the end of group 2 ||| reverse the order of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					lc
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				cc nn a

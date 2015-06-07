@@ -1,0 +1,25 @@
+* bbrzn dd ww * ||| add dd to the 2 group ||| move the 3 group to become the new 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				3
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					dd
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				bbrzn dd ww

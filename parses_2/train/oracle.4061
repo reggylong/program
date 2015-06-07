@@ -1,0 +1,25 @@
+* bb hh qq * ||| add hh to group 2 ||| add qq to group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				qq
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					hh
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				bb hh qq

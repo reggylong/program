@@ -1,0 +1,25 @@
+* xx pp hh * ||| add feh to end of 1 group ||| remove h from 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					feh
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				xx pp hh

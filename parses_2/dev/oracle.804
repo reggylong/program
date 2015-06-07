@@ -1,0 +1,23 @@
+* aa sd ww * ||| repeat group 3 ||| add oap to the end of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				oap
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aa sd ww

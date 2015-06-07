@@ -1,0 +1,23 @@
+* dkk tt z * ||| add tt to 2 group ||| add rn to end of 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				rn
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				dkk tt z

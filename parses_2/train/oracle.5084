@@ -1,0 +1,25 @@
+* nn oooo ss * ||| swap 2 and 3 group ||| remove o from 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				nn oooo ss

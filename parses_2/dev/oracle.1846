@@ -1,0 +1,25 @@
+* bb ff rr * ||| add eim to the end of the 3 group ||| remove m from the end of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				false
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					eim
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				bb ff rr

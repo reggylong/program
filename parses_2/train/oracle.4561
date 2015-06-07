@@ -1,0 +1,25 @@
+* nn ee yy * ||| remove n from group 1 ||| add kb to the end of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				kb
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				nn ee yy

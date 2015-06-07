@@ -1,0 +1,25 @@
+* succccc fobb aaaa * ||| remove 1 a from the 3 group ||| add fo to the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				fo
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					3
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				succccc fobb aaaa

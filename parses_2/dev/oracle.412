@@ -1,0 +1,23 @@
+* qqzv ss uuuu * ||| double the 1 group ||| cut u from the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				qqzv ss uuuu

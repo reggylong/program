@@ -1,0 +1,25 @@
+* hh jj tt * ||| delete the 1 letter of the 1 group ||| add ho to the end of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				ho
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				hh jj tt

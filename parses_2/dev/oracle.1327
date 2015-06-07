@@ -1,0 +1,23 @@
+* aabd tcdd ee * ||| add tcdd to the end of the 2 group ||| reverse the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					tcdd
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aabd tcdd ee

@@ -1,0 +1,25 @@
+* dd tttt v * ||| remove d from the 1 group ||| add ua to the front of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				ua
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				dd tttt v

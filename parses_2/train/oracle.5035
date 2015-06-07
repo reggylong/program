@@ -1,0 +1,25 @@
+* qqq ss vv * ||| add z to the front of the 2 group ||| remove the last letters in the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				2
+				boolean
+				false
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					z
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				qqq ss vv

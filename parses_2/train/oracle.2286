@@ -1,0 +1,25 @@
+* opa ee uu * ||| add oqp to the start of 1 ||| switch groups 1 and 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				1
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					oqp
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				opa ee uu

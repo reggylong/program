@@ -1,0 +1,25 @@
+* aa bb nn * ||| subtract an n from group 3 ||| add ry to the beginning of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				ry
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					3
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aa bb nn

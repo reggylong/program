@@ -1,0 +1,23 @@
+* jjjj qqqq yy * ||| double the 3 group ||| add rd to the front of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				rd
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				jjjj qqqq yy

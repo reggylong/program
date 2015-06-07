@@ -1,0 +1,25 @@
+* i qqhmm ww * ||| swap groups 2 and 3 ||| place an f in front of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				f
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				i qqhmm ww

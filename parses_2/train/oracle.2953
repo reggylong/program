@@ -1,0 +1,23 @@
+* ll jj gg * ||| add ll to the 1 group ||| add jj to the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					ll
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ll jj gg

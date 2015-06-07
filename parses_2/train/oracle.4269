@@ -1,0 +1,23 @@
+* ppqac aa bbbbbbbb * ||| add kr to the end of the 3 group ||| duplicate the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					kr
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ppqac aa bbbbbbbb

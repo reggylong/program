@@ -1,0 +1,25 @@
+* aaaa egcb gg * ||| add kkz to the front of the 3 group ||| switch the 2 and 3 groups
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				2
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					kkz
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aaaa egcb gg

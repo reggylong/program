@@ -1,0 +1,15 @@
+* aa ff hh * ||| do nothing ||| add hh to the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				hh
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa ff hh

@@ -1,0 +1,25 @@
+* kk rr z * ||| add ssu to the end of group 1 ||| add kkssu to the end of group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				kkssu
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					ssu
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				kk rr z

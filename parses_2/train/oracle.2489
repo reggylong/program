@@ -1,0 +1,25 @@
+* ll oobtv xxqcx * ||| add xxqcx to end of 3 group ||| remove x from front of 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					xxqcx
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ll oobtv xxqcx

@@ -1,0 +1,15 @@
+* a cc gg * ||| add oap to the end of group 3 ||| keep everything the same
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				oap
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			a cc gg

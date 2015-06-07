@@ -1,0 +1,25 @@
+* kk pp t * ||| add oo to the back of the 3 group ||| swap the 1 and 2 groups
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				1
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					oo
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				kk pp t

@@ -1,0 +1,23 @@
+* pp qq yy * ||| halve group 1 ||| double group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				pp qq yy

@@ -1,0 +1,25 @@
+* ee oo ttsktttskt * ||| put clb in front of the 3 group ||| add ee to the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				ee
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					clb
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ee oo ttsktttskt

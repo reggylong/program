@@ -1,0 +1,15 @@
+* a cc eeee * ||| add an a to the 1 group ||| do nothing
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				a
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			a cc eeee

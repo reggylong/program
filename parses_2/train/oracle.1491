@@ -1,0 +1,21 @@
+* ee rr yy * ||| add 2 es to the 1 group ||| add 2 ys to the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ee rr yy

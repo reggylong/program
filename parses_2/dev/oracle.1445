@@ -1,0 +1,25 @@
+* gg vv aa * ||| add gg to the 1 group ||| add tl to the end of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				tl
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					gg
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				gg vv aa

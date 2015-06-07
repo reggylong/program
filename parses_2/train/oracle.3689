@@ -1,0 +1,23 @@
+* qwpp gg bb * ||| double the letters in the 2 group ||| add k to the end of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				k
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				qwpp gg bb

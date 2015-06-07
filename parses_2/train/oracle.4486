@@ -1,0 +1,23 @@
+* h qqqq ww * ||| add so to the end of group 2 ||| add h to group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					so
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				h qqqq ww

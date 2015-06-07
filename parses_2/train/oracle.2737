@@ -1,0 +1,25 @@
+* pppp rr qq * ||| swap groups 2 and 3 ||| add ep to the end of group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				ep
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				pppp rr qq

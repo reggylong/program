@@ -1,0 +1,25 @@
+* oooo r vv * ||| swap 2 and 3 groups ||| add c to front of 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				c
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				oooo r vv

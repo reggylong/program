@@ -1,0 +1,25 @@
+* mm ssssssss uu * ||| swap 1 and 3 groups ||| add hku to end of 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				hku
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					1
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				mm ssssssss uu

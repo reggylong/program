@@ -1,0 +1,23 @@
+* aa lqbvckk z * ||| remove a from the end of the 1 group ||| reverse the order of the letters in the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aa lqbvckk z

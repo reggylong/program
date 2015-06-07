@@ -1,0 +1,25 @@
+* pp ouu yyjyr * ||| add nih to the end of group 1 ||| add oxz to the front of group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				oxz
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					nih
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				pp ouu yyjyr

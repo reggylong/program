@@ -1,0 +1,23 @@
+* hh yyyy zz * ||| add bfh to front of 3 group ||| add bfhzz to end of 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					bfh
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				hh yyyy zz

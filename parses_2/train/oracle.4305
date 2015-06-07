@@ -1,0 +1,25 @@
+* zz uuyo ss * ||| add uuyo to the front of group 2 ||| add yxl to the end of group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				yxl
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					uuyo
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				zz uuyo ss

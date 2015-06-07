@@ -1,0 +1,25 @@
+* hhhh nn zzmwe * ||| remove h from group 1 ||| add hhh to group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				hhh
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				hhhh nn zzmwe

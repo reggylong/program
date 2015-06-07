@@ -1,0 +1,25 @@
+* hh rqq vv * ||| remove q from the end of group 2 ||| add zne to the front of group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				zne
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					2
+					boolean
+					false
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				hh rqq vv

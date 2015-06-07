@@ -1,0 +1,25 @@
+* kklj ss xx * ||| remove from 1 group ||| add ss to 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				ss
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					false
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				kklj ss xx

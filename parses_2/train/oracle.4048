@@ -1,0 +1,25 @@
+* ww ii aa * ||| swap the 2 and 3 groups ||| swap back the 2 and 3 groups
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				2
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ww ii aa

@@ -1,0 +1,25 @@
+* mm pp uu * ||| swap the 1 and 3 groups ||| add j to the back of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				j
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					1
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				mm pp uu

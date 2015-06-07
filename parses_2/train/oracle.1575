@@ -1,0 +1,25 @@
+* aaaaaaaa j eevo * ||| add mw to the front of the 3 group ||| add tz to the end of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				tz
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					mw
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aaaaaaaa j eevo

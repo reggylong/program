@@ -1,0 +1,15 @@
+* aa hhhh qq * ||| no change to this step ||| add qq to the end of the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				qq
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa hhhh qq

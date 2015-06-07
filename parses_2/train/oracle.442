@@ -1,0 +1,23 @@
+* aaaa tnfmupp dd * ||| add aaaa to the end of the 1 group ||| reverse the order of the letters in the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					aaaa
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aaaa tnfmupp dd

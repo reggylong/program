@@ -1,0 +1,25 @@
+* ee pp yyy * ||| switch the positions of the 2 and 3 groups ||| add gne to the end of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				gne
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ee pp yyy

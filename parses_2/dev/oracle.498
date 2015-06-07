@@ -1,0 +1,23 @@
+* faaaa sdwwjos tlkk * ||| reverse the 3 group ||| remove the s at the end of the 2 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				2
+				boolean
+				false
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.reverseGroup
+					var
+					g
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				faaaa sdwwjos tlkk

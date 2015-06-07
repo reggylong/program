@@ -1,0 +1,23 @@
+* a nn rrrr * ||| double the letters in the 2 group ||| add xg to the end of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				xg
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.doubleGroup
+					var
+					g
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				a nn rrrr

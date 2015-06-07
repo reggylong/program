@@ -1,0 +1,23 @@
+* yyy jj upzaa * ||| reverse the order of the 3 group ||| swap the 1 and 2 groups
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				1
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.reverseGroup
+					var
+					g
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				yyy jj upzaa

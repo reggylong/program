@@ -1,0 +1,25 @@
+* a ff ssjky * ||| remove y from group 3 ||| add ihd to the end of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				ihd
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					3
+					boolean
+					false
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				a ff ssjky

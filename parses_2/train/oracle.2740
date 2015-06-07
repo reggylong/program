@@ -1,0 +1,25 @@
+* nn oo qqqq * ||| swap groups 1 and 2 ||| append gyu to group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				gyu
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					1
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				nn oo qqqq

@@ -1,0 +1,21 @@
+* ee bbw eijaa * ||| reverse the order of the letters in the 2 group ||| reverse the order of the letters in the 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.reverseGroup
+					var
+					g
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ee bbw eijaa

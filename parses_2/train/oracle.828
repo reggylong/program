@@ -1,0 +1,25 @@
+* aaaa c xx * ||| add gt to the end of the 3 group ||| add vgz to the beginning of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				vgz
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					gt
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aaaa c xx

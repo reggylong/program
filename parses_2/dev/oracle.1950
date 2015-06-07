@@ -1,0 +1,25 @@
+* hh ll xxgg * ||| remove the last letter from the 3 group ||| remove a letter from the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				1
+				boolean
+				true
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					3
+					boolean
+					false
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				hh ll xxgg

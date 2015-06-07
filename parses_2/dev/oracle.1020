@@ -1,0 +1,15 @@
+* aa bbbb hh * ||| add bbbb to the end of the 2 group ||| cant answer
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				bbbb
+				number
+				2
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa bbbb hh
