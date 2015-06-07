@@ -46,6 +46,7 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
     for ind, line in enumerate(currTree):
       if "edu.stanford.nlp.sempre" in line:
         currTreeBlock.append(ind)
+    print(len(currTreeBlock))
     treeToInds = []
     for line in currTree:
       treeToInds.append([wordDict[word] for word in line.split()])
