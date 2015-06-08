@@ -1,0 +1,25 @@
+* dd bb ll * ||| swap the 2 and 3 groups ||| add zm to the beginning of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				zm
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					2
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				dd bb ll

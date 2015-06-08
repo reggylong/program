@@ -1,0 +1,15 @@
+* ii aa nnlh * ||| do nothing ||| remove an a from group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				2
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			ii aa nnlh

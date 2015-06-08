@@ -1,0 +1,23 @@
+* pp ww yyyyv * ||| add an f to the 2 group ||| repeat the same letters in group 2 and add it to the end
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.append
+					var
+					g
+					string
+					f
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				pp ww yyyyv

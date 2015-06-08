@@ -1,0 +1,15 @@
+* aa ii jj * ||| add b to the front of the 2 group ||| no change in this step
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				b
+				number
+				2
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa ii jj

@@ -1,0 +1,15 @@
+* aa cc tt * ||| do nothing ||| add id to the front of group 1
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				id
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa cc tt

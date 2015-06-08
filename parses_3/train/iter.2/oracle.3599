@@ -1,0 +1,15 @@
+* aa ff zz * ||| add ff to the 2 group ||| keep the same
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				ff
+				number
+				2
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa ff zz

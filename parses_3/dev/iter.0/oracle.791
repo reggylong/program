@@ -1,0 +1,15 @@
+* aa ee tt * ||| add ar to the front of group 3 ||| do nothing
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				ar
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa ee tt

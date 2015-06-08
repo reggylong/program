@@ -1,0 +1,13 @@
+* ffff xx z * ||| reverse last operation ||| remove z from 3 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			ffff xx z

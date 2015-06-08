@@ -1,0 +1,25 @@
+* qq ss zzzz * ||| swap the 3 and 2 groups ||| swap the 2 and 3 groups again
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				2
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.swap
+					var
+					g
+					number
+					3
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				qq ss zzzz

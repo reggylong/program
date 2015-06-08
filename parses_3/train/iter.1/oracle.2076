@@ -1,0 +1,15 @@
+* v f a * ||| remove f from the 2 group ||| no change to this step
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				2
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			v f a

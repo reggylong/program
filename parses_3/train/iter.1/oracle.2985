@@ -1,0 +1,15 @@
+* bbbbbb foaa vv * ||| swap group 2 and 1 ||| do nothing
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				2
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			bbbbbb foaa vv

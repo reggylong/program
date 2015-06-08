@@ -1,0 +1,15 @@
+* g y * ||| do nothing ||| add bpq to the front of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				bpq
+				number
+				2
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			g y

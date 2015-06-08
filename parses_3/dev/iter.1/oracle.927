@@ -1,0 +1,23 @@
+* aaaa kkzgg egcb * ||| add yo to the beginning of group 1 ||| reverse the order of group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					yo
+					number
+					1
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				aaaa kkzgg egcb

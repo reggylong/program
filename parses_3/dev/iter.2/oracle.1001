@@ -1,0 +1,13 @@
+* ss pp nn * ||| undo the last operation ||| swap 1 and 3 groups
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			ss pp nn

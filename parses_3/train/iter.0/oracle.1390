@@ -1,0 +1,15 @@
+* aa gg ww * ||| remove a w from group 3 ||| do nothing
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa gg ww

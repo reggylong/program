@@ -1,0 +1,15 @@
+* gg y * ||| remove a g from the 1 group ||| do nothing
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				1
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			gg y

@@ -1,0 +1,15 @@
+* aa bb x * ||| add xp to the end of the 1 group ||| no change to this step
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				xp
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa bb x

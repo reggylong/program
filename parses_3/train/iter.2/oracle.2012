@@ -1,0 +1,23 @@
+* ssjeissjei a ffffffff * ||| add oqp to the front of 2 ||| reverse group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					oqp
+					number
+					2
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ssjeissjei a ffffffff

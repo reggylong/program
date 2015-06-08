@@ -1,0 +1,23 @@
+* faaaa sdwwjos lkk * ||| add t to the front of 3 ||| reverse group 3
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				3
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					t
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				faaaa sdwwjos lkk

@@ -1,0 +1,15 @@
+* aa cc ii * ||| cant answer ||| add wfx to the beginning of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				wfx
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa cc ii

@@ -1,0 +1,15 @@
+* dd aa uu * ||| no change to this step ||| remove d from the end of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				1
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			dd aa uu

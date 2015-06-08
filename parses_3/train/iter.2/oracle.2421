@@ -1,0 +1,23 @@
+* nn llgbllgb aavxw * ||| add et to the beginning of group 3 ||| reverse the order of group 2
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				2
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.prepend
+					var
+					g
+					string
+					et
+					number
+					3
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				nn llgbllgb aavxw

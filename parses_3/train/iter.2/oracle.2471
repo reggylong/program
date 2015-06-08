@@ -1,0 +1,15 @@
+* aaxp bb x * ||| no change to this step ||| add aaxp to the end of the 1 group
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.prepend
+				var
+				g
+				string
+				aaxp
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aaxp bb x

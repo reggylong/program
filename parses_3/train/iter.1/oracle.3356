@@ -1,0 +1,15 @@
+* dd gg aa * ||| remove d from the beginning of the 1 group ||| cant answer
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				1
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			dd gg aa

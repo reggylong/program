@@ -1,0 +1,87 @@
+* aa t kk * ||| double group 3 ||| repeat
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.doubleGroup
+				var
+				g
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa t kk
+
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		aa t kk
+
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		aa t kk
+
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		aa t kk
+
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		aa t kk
+
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		aa t kk
+
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		aa t kk
+
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				true
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa t kk
+
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.remove
+				var
+				g
+				number
+				3
+				boolean
+				false
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa t kk
+
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.reverseGroup
+				var
+				g
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa t kk
+

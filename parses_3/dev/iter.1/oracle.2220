@@ -1,0 +1,23 @@
+* ff jj ss * ||| add a to the back of the 1 group ||| cut a from the back of the 1 group
+	call
+	edu.stanford.nlp.sempre.SFun.parseStartState
+		string
+		ff jj ss
+
+				g
+				number
+				1
+			lambda
+			g
+				call
+				edu.stanford.nlp.sempre.SFun.remove
+					var
+					g
+					number
+					1
+					boolean
+					true
+			call
+			edu.stanford.nlp.sempre.SFun.parseStartState
+				string
+				ff jj ss

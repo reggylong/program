@@ -1,0 +1,15 @@
+* aaaa bb mmm * ||| switch the 2 and 3 groups ||| no change to this step
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.swap
+				var
+				g
+				number
+				2
+				number
+				3
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aaaa bb mmm

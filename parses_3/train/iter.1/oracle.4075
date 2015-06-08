@@ -1,0 +1,15 @@
+* aa dd oo * ||| add ovb to the end of the 1 group ||| there is no change for this step
+		lambda
+		g
+			call
+			edu.stanford.nlp.sempre.SFun.append
+				var
+				g
+				string
+				ovb
+				number
+				1
+		call
+		edu.stanford.nlp.sempre.SFun.parseStartState
+			string
+			aa dd oo
