@@ -58,7 +58,7 @@ else:
   recurrent.params.H = identity(H.shape[0])#H
 rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
 alpha_gen = alphagen(N=1000000, alphastart = 0.002)
-recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=300000)
+recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=100000)
 write_pickle("models/", recurrent, saveFile)
 predictions = recurrent.predict(devSet, devUtters)
 print("Dev loss: " + str(recurrent.compute_display_loss(devSet, devUtters)))

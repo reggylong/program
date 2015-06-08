@@ -146,21 +146,18 @@ class RNN(NNBase):
 	
 	for ind, apart in enumerate(answer_neg):
 	    hs_neg.append(zeros((aneg_lens[ind] + 1, self.hdim)))
-	#    self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
+	    self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
 
        	neg_combine = concatenate([seq[aneg_lens[ind]] for ind, seq in enumerate(hs_neg)])
 	q_combine = concatenate([seq[q_lens[ind]] for ind, seq in enumerate(hs_question)])
 	a_combine = concatenate([seq[a_lens[ind]] for ind, seq in enumerate(hs_answer)])
-	
 	hvec_neg = self.tanh(dot(self.params.W, neg_combine) + self.params.b)
 	hvec_q = self.tanh(dot(self.params.W, q_combine) + self.params.b)
 	hvec_a = self.tanh(dot(self.params.W, a_combine) + self.params.b)
- 
 	diff = hvec_q - hvec_a
         diffneg = hvec_q - hvec_neg
         margin = max(0, self.margin - sum(diffneg**2) + sum(diff**2))
         if not margin > 0: return
-        
         delta_qneg = -self.tanh_grad(hvec_q)*diffneg
         delta_neg = self.tanh_grad(hvec_neg)*diffneg
         self.grads.W += outer(delta_qneg, q_combine) + outer(delta_neg, neg_combine)
@@ -170,13 +167,12 @@ class RNN(NNBase):
         delta_a = self.tanh_grad(hvec_a)*(-diff)
         self.grads.W += outer(delta_q, q_combine) + outer(delta_a, a_combine)
         self.grads.b += delta_q + delta_a
-
+	
         self.grads.W += self.reg*self.params.W
         
-
         if not self.backpropwv: return
-
-        d_qcombine = dot(self.params.W.T, delta_q + delta_qneg)
+        
+	d_qcombine = dot(self.params.W.T, delta_q + delta_qneg)
         d_acombine = dot(self.params.W.T, delta_a)
         d_negcombine = dot(self.params.W.T, delta_neg)    
     
@@ -184,8 +180,8 @@ class RNN(NNBase):
 	    self.calc_backprop(strList, hs_question[ind], d_qcombine[self.hdim*ind:self.hdim*(ind + 1)])
 	for ind, strList in enumerate(oracle):
 	    self.calc_backprop(strList, hs_answer[ind], d_acombine[self.hdim*ind:self.hdim*(ind + 1)])
-	#for ind, strList in enumerate(answer_neg):
-	#    self.calc_backprop(strList, hs_neg[ind], d_negcombine[self.hdim*ind:self.hdim*(ind + 1)])
+	for ind, strList in enumerate(answer_neg):
+	    self.calc_backprop(strList, hs_neg[ind], d_negcombine[self.hdim*ind:self.hdim*(ind + 1)])
  
   #def _acc_grads(self, answers, question):
     #    """
@@ -345,7 +341,7 @@ class RNN(NNBase):
 	for parseSet, utterance in itertools.izip(parses, utterances):
             outputs.append(self.predict_single(parseSet, utterance))
             count += 1
-	    #print(count)
+	    print(count)
 	return outputs
         
     def compute_single_loss(self, answers, question):
@@ -353,7 +349,8 @@ class RNN(NNBase):
 	#print(self.count)
 	all_parses, oracle = answers
         question = [arr[::-1] for arr in question]
-        oracle = [arr[::-1] for arr in oracle]
+        #print("q", question)
+	oracle = [arr[::-1] for arr in oracle]
         
         q_lens = [len(arr) for arr in question]
         a_lens = [len(arr) for arr in oracle]
@@ -376,22 +373,22 @@ class RNN(NNBase):
         
         for ind, apart in enumerate(answer_neg):
             hs_neg.append(zeros((aneg_lens[ind] + 1, self.hdim)))
- 	#           self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
+ 	    self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
 
         neg_combine = concatenate([seq[aneg_lens[ind]] for ind, seq in enumerate(hs_neg)])
         q_combine = concatenate([seq[q_lens[ind]] for ind, seq in enumerate(hs_question)])
-        a_combine = concatenate([seq[a_lens[ind]] for ind, seq in enumerate(hs_answer)])
-        
+	a_combine = concatenate([seq[a_lens[ind]] for ind, seq in enumerate(hs_answer)])
         hvec_neg = self.tanh(dot(self.params.W, neg_combine) + self.params.b)
         hvec_q = self.tanh(dot(self.params.W, q_combine) + self.params.b)
-        #print(oracle)
+        #print("loss", hvec_q)
+	#print(oracle)
 	#print("q", question)
 	hvec_a = self.tanh(dot(self.params.W, a_combine) + self.params.b)
  
         diff = hvec_q - hvec_a
         diffneg = hvec_q - hvec_neg
         margin = max(0, self.margin - sum(diffneg**2) + sum(diff**2))
-	J = margin + 0.5*self.reg*sum(self.params.W**2)
+	J = 0.5*margin + 0.5*self.reg*sum(self.params.W**2)
         return J
 
     def compute_loss(self, X, Y):
@@ -419,7 +416,7 @@ class RNN(NNBase):
         return J / float(ntot)
 
 if __name__ == "__main__":
-    rnn = RNN(sqrt(0.1)*random.standard_normal((1000, 5)), backpropwv = True)
+    rnn = RNN(sqrt(0.1)*random.standard_normal((1000, 5)), backpropwv = True, margin=20)
     utterExample = [[411, 339, 46], [341, 591, 83, 355, 175], [2, 3, 4]]
-    trainExample = ([([411, 339, 46], [341, 591, 83, 355, 175], [1, 2, 3])], ([21, 1], [2, 3, 4], [5, 6, 7]))
+    trainExample = ([[[411, 339, 46], [341, 591, 83, 355, 175], [1, 2, 3]]], [[21, 1], [2, 3, 4], [5, 6, 7]])
     rnn.grad_check(trainExample, utterExample)

@@ -303,7 +303,8 @@ class NNBase(object):
             if name in skiplist: continue
             theta = self.params[name]
             grad_computed = self.grads[name]
-            grad_approx = zeros(theta.shape)
+            #print("computed", grad_computed)
+	    grad_approx = zeros(theta.shape)
             for ij, v in ndenumerate(theta):
                 tij = theta[ij]
                 theta[ij] = tij + eps
@@ -313,6 +314,7 @@ class NNBase(object):
                 theta[ij] = tij # reset
                 grad_approx[ij] = (Jplus - Jminus)/(2*eps)
             # Compute Frobenius norm
+	    #print("approx", grad_approx)
             grad_delta = linalg.norm(grad_approx - grad_computed)
             print >> outfd, "grad_check: dJ/d%s error norm = %.04g" % (name, grad_delta),
             print >> outfd, ("[ok]" if grad_delta < tol else "**ERROR**")
