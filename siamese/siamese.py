@@ -84,35 +84,36 @@ class SiameseNet(NNBase):
     # answers = ([all parses], oracle parse)
     def _acc_grads(self, question, answers):
         # Forward propagation
-        input_q, command_q = question
         all_parses, oracle = answers
-        input_a, command_a = oracle
         counter_q = collections.Counter()
         counter_a = collections.Counter()
 
         x1 = zeros(self.hdim) 
         x2 = zeros(self.hdim)
-        for idx in itertools.chain(input_q, command_q):
-            counter_q[idx] += 1.0
-            x1 += self.sparams.L[idx]
-        for idx in itertools.chain(input_a, command_a):
-            counter_a[idx] += 1.0
-            x2 += self.sparams.L[idx]
+        x1 = zeros(self.hdim) 
+        x2 = zeros(self.hdim)
+        for lists in question:
+            for idx in lists:
+                x1 += self.sparams.L[idx]
+                counter_q[idx] += 1.0
+        for lists in oracle:
+            for idx in lists:
+                x2 += self.sparams.L[idx]
+                counter_a[idx] += 1.0
 
         h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
         h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
         dist = sum((h1 - h2)**2) 
         contrast = rand.choice(all_parses)
-        input_c, command_c = contrast
-        while checkListsEqual(command_c,command_a):
+        while checkListsEqual(contrast,oracle):
             contrast = rand.choice(all_parses)
-            input_c, command_c = contrast
         
         counter_c = collections.Counter()
         x3 = zeros(self.hdim)
-        for idx in itertools.chain(input_c, command_c):
-            counter_c[idx] += 1.0
-            x3 += self.sparams.L[idx]
+        for lists in contrast:
+            for idx in lists:
+                x3 += self.sparams.L[idx]
+                counter_c[idx] += 1.0
 
         # Contrastive Loss
         h3 = self.tanh(self.params.W.dot(x3) + self.params.b)
@@ -122,7 +123,7 @@ class SiameseNet(NNBase):
         # Backward propagation
         z1 = (h1 - h2) * self.tanh_grad(h1)
         z2 = (h2 - h1) * self.tanh_grad(h2)
-        #z3 = (h3 - h1) * self.tanh_grad(h3)
+        z3 = (h3 - h1) * self.tanh_grad(h3)
 
         self.grads.b += (z1 + z2) 
         self.grads.W +=  (outer(z1, x1) + outer(z2, x2))    
@@ -145,17 +146,16 @@ class SiameseNet(NNBase):
             self.sgrads.L[k] = v * Lagrad
 
     def compute_single_loss(self, question, answers):
-        input_q, command_q = question
         all_parses, oracle = answers
-
-        input_a, command_a = oracle
 
         x1 = zeros(self.hdim) 
         x2 = zeros(self.hdim)
-        for idx in itertools.chain(input_q, command_q):
-            x1 += self.sparams.L[idx]
-        for idx in itertools.chain(input_a, command_a):
-            x2 += self.sparams.L[idx]
+        for lists in question:
+            for idx in lists:
+                x1 += self.sparams.L[idx]
+        for lists in oracle:
+            for idx in lists:
+                x2 += self.sparams.L[idx]
 
         h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
         h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
@@ -170,20 +170,20 @@ class SiameseNet(NNBase):
                     for question, answers in itertools.izip(X, Y)])
 
     def predict_single(self, question, answers):
-        input_q, command_q = question
         all_parses, oracle = answers
         x1 = zeros(self.hdim)
-        for idx in itertools.chain(input_q, command_q):
-            x1 += self.sparams.L[idx]
+        for lists in question:
+            for idx in lists:
+                x1 += self.sparams.L[idx]
         h1 = self.tanh(self.params.W.dot(x1) + self.params.b)
 
         minCost = inf
         minCostIndex = -1
         for i, candidate in enumerate(all_parses):
-            input_a, command_a = candidate
             x2 = zeros(self.hdim)
-            for idx in itertools.chain(input_a, command_a):
-                x2 += self.sparams.L[idx]
+            for lists in candidate:
+                for idx in lists:
+                    x2 += self.sparams.L[idx]
             h2 = self.tanh(self.params.W.dot(x2) + self.params.b)
             cost = sum((h1 - h2)**2) 
             if cost < minCost:
