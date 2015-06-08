@@ -46,10 +46,11 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
   treeList = []
   for ind, line in enumerate(f):
     if ind == 0: continue
-    stripline = line.rstrip()
+    stripline = line.strip()
     if stripline == "lambda": continue	
     if stripline == "call": continue
     if stripline == "g": continue
+    if stripline == "gv": continue
     if stripline == "var": continue
     if stripline == "boolean": continue
     if stripline == "number": continue

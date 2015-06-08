@@ -24,6 +24,7 @@ def convertExample(exFile, wordDict, verbose=False):
   for block in firstline.split("|||"):
     blockInds = []
     for word in block.split():
+      if word == "*": continue
       blockInds.append(wordDict[word])
     blockList.append(blockInds)
   return blockList  

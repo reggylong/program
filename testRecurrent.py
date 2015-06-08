@@ -40,12 +40,17 @@ def parseToWords(parse1):
   words2 = []
   for ind in parse1[1]:
     words2.append(inddict[ind])
-  return words1, words2
+  words3 = []
+  if len(parse1) > 2:
+    for ind in parse1[2]:
+      words3.append(inddict[ind])
+  return words1, words2, words3
    
 network = load_pickle(loadFile)
 predictions = network.predict(devSet, devUtters)
 print("Dev loss: " + str(network.compute_display_loss(devSet, devUtters)))
 correct = 0
+print(len(trainingSet))
 trainpredictions = network.predict(trainingSet, trainUtters)
 for ind, predict in enumerate(trainpredictions): 
     if checkParseEqual(trainingSet[ind][1], trainingSet[ind][0][predict]):
