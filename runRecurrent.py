@@ -13,6 +13,11 @@ trainUtterSet = load_pickle(args[1])
 trainingExamples = load_pickle(args[2])
 correctExamples = load_pickle(args[3])
 devUtterSet = load_pickle(args[4])
+for ind, correct in enumerate(correctExamples):
+  print(correct)
+  if len(correct) < 3:
+    print ind
+
 zipAll = [(all, correct[0], utter) for all, correct, utter in zip(trainingExamples, correctExamples, trainUtterSet) if len(correct) > 0]
 trainingSet = [(all, correct) for all, correct, utter in zipAll]
 trainUtters = [utter for all, correct, utter in zipAll]
@@ -33,8 +38,8 @@ worddict = load_pickle("data/word_to_index.pkl")
 
 def randgen(N, ntrain):
     for i in range(N): 
-        yield random.randint(0, ntrain)
-
+        k = random.randint(0, ntrain)
+	yield k
 def alphagen(N, alphastart):
     curralpha = alphastart
     print(curralpha)

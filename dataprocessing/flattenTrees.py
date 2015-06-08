@@ -2,7 +2,7 @@ import collections
 import sys
 import os
 from parseTree import ParseNode
-import pickle
+import cPickle as pickle
 
 args = sys.argv
 treePickle = args[1]

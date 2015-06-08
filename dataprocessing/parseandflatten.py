@@ -15,6 +15,12 @@ class ParseNode: # a node in the tree
     else:
       self.children = children
 
+def groupIndsArray(arr, start, end):
+  groupedInds = []
+  for indSet in arr[start:end]:
+    groupedInds += indSet
+  return groupedInds
+
 def convertExampleToTree(exFile, wordDict, verbose=False):
   f = open(exFile, "r")
   totalTreeLines = []
@@ -22,36 +28,34 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
   treeList = []
   for ind, line in enumerate(f):
     if ind == 0: continue
-    if line.rstrip() == "": 
+    stripline = line.rstrip()
+    if stripline == "lambda": continue	
+    if stripline == "call": continue
+    if stripline == "g": continue
+    if stripline == "var": continue
+    if stripline == "": 
       totalTreeLines.append(currTreeLines)
       currTreeLines = []
     else:
-      currTreeLines.append(line)
+      currTreeLines.append(stripline)
   if len(currTreeLines) > 0:
     totalTreeLines.append(currTreeLines)
-  for tree in totalTreeLines: 
-    tabNumsOld = 0
-    parseString = tree[0].strip()
-    indArr = [wordDict[word] for word in parseString.split()]
-    root = ParseNode(parseString, indArr)
-    currNode = root
-    for line in tree[1:]:
-      tabNumsNew = len(line.split("\t")) - 1
-      parent = None
-      if tabNumsNew == tabNumsOld: 
-        parent = currNode.parent
-      else: 
-        if tabNumsNew > tabNumsOld: 
-          parent = currNode
-        else: 
-          parent = currNode.parent.parent
-      parseString = line.strip()
-      indArr = [wordDict[word] for word in parseString.split()]
-      newNode = ParseNode(parseString, indArr, parent=parent)
-      parent.children.append(newNode)
-      currNode = newNode
-      tabNumsOld = tabNumsNew
-    treeList.append(root)
+  for currTree in totalTreeLines:
+    currTreeBlock = []
+    currFlat = []
+    for ind, line in enumerate(currTree):
+      if "edu.stanford.nlp.sempre" in line:
+        currTreeBlock.append(ind)
+    print(len(currTreeBlock))
+    treeToInds = []
+    for line in currTree:
+      treeToInds.append([wordDict[word] for word in line.split()])
+    currFlat.append(groupIndsArray(treeToInds, currTreeBlock[-1], len(treeToInds)))
+    if len(currTreeBlock) > 1:
+      currFlat.append(groupIndsArray(treeToInds, currTreeBlock[-2], currTreeBlock[-1]))
+    if len(currTreeBlock) > 2:
+      currFlat.append(groupIndsArray(treeToInds, currTreeBlock[0], currTreeBlock[1]))
+    treeList.append(currFlat)
   f.close()
   return treeList
 
@@ -72,5 +76,4 @@ if __name__ == "__main__":
   savename = args[2]
   parsePrefix = args[3]
   trainingSet = prepareTrainExamples(examples, "../data/word_to_index.pkl", verbose=True, parsePrefix=parsePrefix)
-  print("Done")
   pickle.dump(trainingSet, open(savename, "wb"))
