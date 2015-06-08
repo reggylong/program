@@ -3,6 +3,7 @@ import sys
 import os
 import cPickle as pickle
 from data_utils import *
+import itertools
 
 class ParseNode: # a node in the tree
 
@@ -14,6 +15,23 @@ class ParseNode: # a node in the tree
       self.children = []
     else:
       self.children = children
+
+
+def checkListsEqual(list1, list2):
+    if len(list1) != len(list2):
+        return False
+    for l1, l2 in itertools.izip(list1, list2):
+        if l1 != l2:
+            return False
+    return True
+
+def checkParseEqual(parse1, parse2):
+    if len(parse1) != len(parse2):
+        return False
+    for list1, list2 in itertools.izip(parse1, parse2):
+        if not checkListsEqual(list1, list2):
+            return False
+    return True
 
 def groupIndsArray(arr, start, end):
   groupedInds = []
@@ -33,6 +51,9 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
     if stripline == "call": continue
     if stripline == "g": continue
     if stripline == "var": continue
+    if stripline == "boolean": continue
+    if stripline == "number": continue
+    if stripline == "string": continue
     if stripline == "": 
       totalTreeLines.append(currTreeLines)
       currTreeLines = []
@@ -42,22 +63,31 @@ def convertExampleToTree(exFile, wordDict, verbose=False):
     totalTreeLines.append(currTreeLines)
   for currTree in totalTreeLines:
     currTreeBlock = []
-    currFlat = []
+    currFlat = [[], [], []]
+    parseStart = 0
     for ind, line in enumerate(currTree):
       if "edu.stanford.nlp.sempre" in line:
-        currTreeBlock.append(ind)
-    print(len(currTreeBlock))
+        if "parseStartState" not in line:
+          parseStart += 1
+	currTreeBlock.append(ind)
     treeToInds = []
     for line in currTree:
       treeToInds.append([wordDict[word] for word in line.split()])
-    currFlat.append(groupIndsArray(treeToInds, currTreeBlock[-1], len(treeToInds)))
-    if len(currTreeBlock) > 1:
-      currFlat.append(groupIndsArray(treeToInds, currTreeBlock[-2], currTreeBlock[-1]))
-    if len(currTreeBlock) > 2:
-      currFlat.append(groupIndsArray(treeToInds, currTreeBlock[0], currTreeBlock[1]))
+    for i in xrange(parseStart):
+      currFlat[i] = groupIndsArray(treeToInds, currTreeBlock[i], currTreeBlock[i + 1])
+    currFlat[2] = groupIndsArray(treeToInds, currTreeBlock[-1], len(treeToInds))
     treeList.append(currFlat)
+  uniqueSet = []
+  for i in xrange(len(treeList)):
+    shouldAdd = True
+    for j in xrange(i):
+      if checkParseEqual(treeList[i], treeList[j]):
+	shouldAdd = False
+	break
+    if shouldAdd:
+      uniqueSet.append(treeList[i])
   f.close()
-  return treeList
+  return uniqueSet
 
 def prepareTrainExamples(trainDir, word_to_ind_path, verbose=False, parsePrefix=""):
   trainingSet = []

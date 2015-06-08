@@ -107,9 +107,13 @@ class RNN(NNBase):
         if len(answers[0]) > 1:
             answer = answers[1]
             neg_answer_ind = random.randint(0, len(answers[0]) - 1)
-            while checkParseEqual(answers[0][neg_answer_ind], answer):
+            count = 0
+	    while checkParseEqual(answers[0][neg_answer_ind], answer):
                 neg_answer_ind = random.randint(0, len(answers[0]) - 1)
-            result = list(answers[0][neg_answer_ind])
+	        count += 1
+	    	if count > 3:
+	            return [[random.randint(0, self._param_dims_sparse['L'][0] - 1)], [random.randint(0, self._param_dims_sparse['L'][0] - 1)], [random.randint(0, self._param_dims_sparse['L'][0] - 1)]]
+	    result = list(answers[0][neg_answer_ind])
 	    while len(result) < 3:
 	 	result.append([random.randint(0, self._param_dims_sparse['L'][0] - 1)])
             return result
@@ -118,7 +122,7 @@ class RNN(NNBase):
             return [[random.randint(0, self._param_dims_sparse['L'][0] - 1)], [random.randint(0, self._param_dims_sparse['L'][0] - 1)], [random.randint(0, self._param_dims_sparse['L'][0] - 1)]]   
     
     def _acc_grads(self, answers, question):
-    	all_parses, oracle = answers
+	all_parses, oracle = answers
     	question = [arr[::-1] for arr in question]
 	oracle = [arr[::-1] for arr in oracle]
 	
@@ -142,7 +146,7 @@ class RNN(NNBase):
 	
 	for ind, apart in enumerate(answer_neg):
 	    hs_neg.append(zeros((aneg_lens[ind] + 1, self.hdim)))
-	    self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
+	#    self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
 
        	neg_combine = concatenate([seq[aneg_lens[ind]] for ind, seq in enumerate(hs_neg)])
 	q_combine = concatenate([seq[q_lens[ind]] for ind, seq in enumerate(hs_question)])
@@ -180,8 +184,8 @@ class RNN(NNBase):
 	    self.calc_backprop(strList, hs_question[ind], d_qcombine[self.hdim*ind:self.hdim*(ind + 1)])
 	for ind, strList in enumerate(oracle):
 	    self.calc_backprop(strList, hs_answer[ind], d_acombine[self.hdim*ind:self.hdim*(ind + 1)])
-	for ind, strList in enumerate(answer_neg):
-	    self.calc_backprop(strList, hs_neg[ind], d_negcombine[self.hdim*ind:self.hdim*(ind + 1)])
+	#for ind, strList in enumerate(answer_neg):
+	#    self.calc_backprop(strList, hs_neg[ind], d_negcombine[self.hdim*ind:self.hdim*(ind + 1)])
  
   #def _acc_grads(self, answers, question):
     #    """
@@ -314,7 +318,7 @@ class RNN(NNBase):
             self.calc_hidden_vec(qpart, hs_question[ind], q_lens[ind])
 
 	q_combine = concatenate([seq[q_lens[ind]] for ind, seq in enumerate(hs_question)])
-        hvec_q = self.tanh(dot(self.params.W, qcombine) + self.params.b)
+        hvec_q = self.tanh(dot(self.params.W, q_combine) + self.params.b)
 
         minCost = inf
         minCostIndex = -1   
@@ -324,10 +328,10 @@ class RNN(NNBase):
 	    a_lens = [len(arr) for arr in candidate]
 	    hs_answer = []   
 	    for ind, apart in enumerate(candidate):
-		hs_answer.append(zeros((q_lens[ind] + 1, self.hdim)))
+		hs_answer.append(zeros((a_lens[ind] + 1, self.hdim)))
 		self.calc_hidden_vec(apart, hs_answer[ind], a_lens[ind])     
 	    a_combine = concatenate([seq[a_lens[ind]] for ind, seq in enumerate(hs_answer)])
-            hvec_a = self.tanh(dot(self.params.W, acombine) + self.params.b)
+            hvec_a = self.tanh(dot(self.params.W, a_combine) + self.params.b)
 
             cost = sum((hvec_q - hvec_a)**2)
             if cost < minCost:
@@ -337,12 +341,17 @@ class RNN(NNBase):
 
     def predict(self, parses, utterances):
         outputs = []
-        for parseSet, utterance in itertools.izip(parses, utterances):
+        count = 0
+	for parseSet, utterance in itertools.izip(parses, utterances):
             outputs.append(self.predict_single(parseSet, utterance))
-        return outputs
+            count += 1
+	    #print(count)
+	return outputs
         
     def compute_single_loss(self, answers, question):
-        all_parses, oracle = answers
+        self.count += 1
+	#print(self.count)
+	all_parses, oracle = answers
         question = [arr[::-1] for arr in question]
         oracle = [arr[::-1] for arr in oracle]
         
@@ -367,7 +376,7 @@ class RNN(NNBase):
         
         for ind, apart in enumerate(answer_neg):
             hs_neg.append(zeros((aneg_lens[ind] + 1, self.hdim)))
-            self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
+ 	#           self.calc_hidden_vec(apart, hs_neg[ind], aneg_lens[ind])
 
         neg_combine = concatenate([seq[aneg_lens[ind]] for ind, seq in enumerate(hs_neg)])
         q_combine = concatenate([seq[q_lens[ind]] for ind, seq in enumerate(hs_question)])
@@ -375,8 +384,8 @@ class RNN(NNBase):
         
         hvec_neg = self.tanh(dot(self.params.W, neg_combine) + self.params.b)
         hvec_q = self.tanh(dot(self.params.W, q_combine) + self.params.b)
-        print(oracle)
-	print("q", question)
+        #print(oracle)
+	#print("q", question)
 	hvec_a = self.tanh(dot(self.params.W, a_combine) + self.params.b)
  
         diff = hvec_q - hvec_a
@@ -392,7 +401,8 @@ class RNN(NNBase):
 
         Do not modify this function!
         """
-        if not isinstance(Y[0][0], collections.Iterable): # single example
+        self.count = 0
+	if not isinstance(Y[0][0], collections.Iterable): # single example
             return self.compute_single_loss(X, Y)
         else: # multiple examples
             return sum([self.compute_single_loss(answers, question)

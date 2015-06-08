@@ -13,10 +13,10 @@ trainUtterSet = load_pickle(args[1])
 trainingExamples = load_pickle(args[2])
 correctExamples = load_pickle(args[3])
 devUtterSet = load_pickle(args[4])
-for ind, correct in enumerate(correctExamples):
-  print(correct)
-  if len(correct) < 3:
-    print ind
+#for ind, correct in enumerate(correctExamples):
+  #print(correct)
+ # if len(correct) < 3:
+  #  print ind
 
 zipAll = [(all, correct[0], utter) for all, correct, utter in zip(trainingExamples, correctExamples, trainUtterSet) if len(correct) > 0]
 trainingSet = [(all, correct) for all, correct, utter in zipAll]
@@ -42,7 +42,7 @@ def randgen(N, ntrain):
 	yield k
 def alphagen(N, alphastart):
     curralpha = alphastart
-    print(curralpha)
+    #print(curralpha)
     for i in range(N):
         if i % (N/2) == 0:
             curralpha /= 3 
@@ -50,7 +50,7 @@ def alphagen(N, alphastart):
 recurrent = None
 if oldRNN is None:
   wv = sqrt(0.1)*random.standard_normal((len(worddict.keys()), vectorDim))
-  recurrent = RNN(wv, middledim = middleDim, backpropwv=True, alpha=0.002, bptt = 10)
+  recurrent = RNN(wv, margin=10, middledim = middleDim, backpropwv=True, alpha=0.002, bptt = 10)
 else:
   wv = oldRNN.sparams.L
   H = oldRNN.params.H
@@ -58,7 +58,7 @@ else:
   recurrent.params.H = identity(H.shape[0])#H
 rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
 alpha_gen = alphagen(N=1000000, alphastart = 0.002)
-recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=100000)
+recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 300000), printevery=1000, costevery=300000)
 write_pickle("models/", recurrent, saveFile)
 predictions = recurrent.predict(devSet, devUtters)
 print("Dev loss: " + str(recurrent.compute_display_loss(devSet, devUtters)))
