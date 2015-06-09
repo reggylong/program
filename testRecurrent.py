@@ -24,6 +24,8 @@ devCorrect = load_pickle(args[6])
 zipAll = [(all, correct[0], utter) for all, correct, utter in zip(devExamples, devCorrect, devUtterSet) if len(correct) > 0]
 devSet = [(all, correct) for all, correct, utter in zipAll]
 devUtters = [utter for all, correct, utter in zipAll]
+devSet = devSet[-700:]
+devUtters = devUtters[-700:]
 loadFile = args[7]
 #if len(args) > 9:
 #  loadFile = args[9]

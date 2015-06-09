@@ -325,9 +325,12 @@ class NNBase(object):
         # Loop over sparse parameters
         for name in self.sparams.names():
             if name in skiplist: continue
+            print(name)
+            print(x)
             theta_full = self.sparams[name]
             # Loop over all sparse updates for this parameter
             for idx, grad_computed in self.sgrads[name]:
+                print(idx)
                 theta = theta_full[idx] # view of update block
                 grad_approx = zeros(theta.shape)
                 # Loop over all indices within update block

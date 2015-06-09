@@ -31,7 +31,7 @@ worddict = load_pickle("data/word_to_index.pkl")
 inddict = {}
 for word in worddict.keys():
   inddict[worddict[word]] = word
-  
+
 def parseToWords(parse1):
   words1 = []
   for ind in parse1[0]:
@@ -39,8 +39,12 @@ def parseToWords(parse1):
   words2 = []
   for ind in parse1[1]:
     words2.append(inddict[ind])
-  return words1, words2
-   
+  words3 = []
+  if len(parse1) > 2:
+    for ind in parse1[2]:
+      words3.append(inddict[ind])
+  return words1, words2, words3
+  
 network = load_pickle(loadFile)
 predictions = network.predict(devSet, devUtters)
 print("Dev loss: " + str(network.compute_display_loss(devSet, devUtters)))

@@ -124,6 +124,7 @@ class RNN(NNBase):
     
     def _acc_grads(self, answers, question):
         all_parses, oracle = answers
+        question = question[::-1]
         question = [arr[::-1] for arr in question]
         oracle = [arr[::-1] for arr in oracle]
 	
@@ -206,6 +207,7 @@ class RNN(NNBase):
 
     def predict_single(self, answers, question):
         all_parses, oracle = answers
+        question = question[::-1]
         question = [arr[::-1] for arr in question]
 
         q_lens = [len(arr) for arr in question]
@@ -252,6 +254,7 @@ class RNN(NNBase):
         self.count += 1
 	    #print(self.count)
         all_parses, oracle = answers
+        question = question[::-1]
         question = [arr[::-1] for arr in question]
         #print("q", question)
         oracle = [arr[::-1] for arr in oracle]
