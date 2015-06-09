@@ -86,11 +86,11 @@ class SimpleLinear(NNBase):
         #        self.sgrads.W[qindx] = self.sparams.W[aindx]       
         for qindx in questioncomb:
             for aindx in answercomb:
-                 self.sgrads.W[aindx] = self.sparams.W[aindx] - self.sparams.W[qindx]
-                 self.sgrads.W[qindx] = self.sparams.W[qindx] - self.sparams.W[aindx]
+                 self.sgrads.W[aindx] = -self.sparams.W[qindx] 
+                 #self.sgrads.W[qindx] = -self.sparams.W[qindx] + self.sparams.W[aindx]
             for aindx in answer_negcomb:
-                 self.sgrads.W[aindx] = -self.sparams.W[aindx]+ self.sparams.W[qindx]
-                 self.sgrads.W[qindx] = -self.sparams.W[qindx] + self.sparams.W[aindx]
+                 self.sgrads.W[aindx] = self.sparams.W[qindx]
+                 #self.sgrads.W[qindx] = self.sparams.W[qindx] - self.sparams.W[aindx]
    
     def sample_neg(self, answers, question):
         if len(answers[0]) > 1:
@@ -144,7 +144,7 @@ class SimpleLinear(NNBase):
         questionEmbed = sum(self.sparams.W[questioncomb], axis=0)
         answerEmbed = sum(self.sparams.W[answercomb], axis=0)
         answerEmbed_neg = sum(self.sparams.W[answer_negcomb], axis=0)
-        margin_sum -= -sum((questionEmbed - answerEmbed)**2) + sum((questionEmbed - answerEmbed_neg)**2)
+        margin_sum -= -dot(questionEmbed.T, answerEmbed_neg) + dot(questionEmbed.T, answerEmbed)
         margin_sum += self.margin
         return max(margin_sum, 0)
 
@@ -169,7 +169,7 @@ class SimpleLinear(NNBase):
             #raEmbed = sum(self.sparams.W[righta], axis=0)
             #score = dot(lqEmbed.T, laEmbed) + dot(rqEmbed.T, raEmbed) + dot(mqEmbed.T, maEmbed)
             answerEmbed = sum(self.sparams.W[answercomb], axis=0)
-            score = -sum((questionEmbed.T - answerEmbed)**2)
+            score = dot(questionEmbed.T, answerEmbed)
             if score > maxScore: 
                 maxScore = score
                 argmaxScore = ind

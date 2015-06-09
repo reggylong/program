@@ -18,11 +18,15 @@ devUtterSet = load_pickle(args[4])
 zipAll = [(all, correct[0], utter) for all, correct, utter in zip(trainingExamples, correctExamples, trainUtterSet) if len(correct) > 0]
 trainingSet = [(all, correct) for all, correct, utter in zipAll]
 trainUtters = [utter for all, correct, utter in zipAll]
+trainingSet = trainingSet[-700:]
+trainUtters = trainUtters[-700:]
 devExamples = load_pickle(args[5])
 devCorrect = load_pickle(args[6])
 zipAll = [(all, correct[0], utter) for all, correct, utter in zip(devExamples, devCorrect, devUtterSet) if len(correct) > 0]
 devSet = [(all, correct) for all, correct, utter in zipAll]
 devUtters = [utter for all, correct, utter in zipAll]
+#devSet = devSet[-700:]
+#devUtters = devUtters[-700:]
 loadFile = args[7]
 #if len(args) > 9:
 #  loadFile = args[9]
@@ -62,7 +66,6 @@ for ind, predict in enumerate(trainpredictions):
     print(parseToWords(trainingSet[ind][0][predict]))
     print("Utterance: ")
     print(parseToWords(trainUtters[ind]))
-print("Train accuracy " + str(float(correct)/len(trainpredictions)))
 correct = 0
 for ind, predict in enumerate(predictions): 
     if checkParseEqual(devSet[ind][1], devSet[ind][0][predict]):
@@ -76,4 +79,6 @@ for ind, predict in enumerate(predictions):
     print(parseToWords(devSet[ind][0][predict]))
     print("Utterance: ")
     print(parseToWords(devUtters[ind]))
+print("Train accuracy " + str(float(correct)/len(trainpredictions)))
+
 print("Accuracy " + str(float(correct)/len(predictions)))

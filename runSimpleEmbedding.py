@@ -3,7 +3,7 @@ import pickle
 import os
 from dataprocessing.data_utils import *
 from dataprocessing.parseTree import ParseNode
-from linearembedding.simpleembedding import *
+from linearembedding.simpleembedding_old import *
 import itertools
 from numpy import *
 
@@ -40,10 +40,10 @@ def alphagen(N, alphastart):
             curralpha /= 3 
         yield curralpha
 
-simpleEmbedder = SimpleLinear(W = wv, alpha=0.002)
+simpleEmbedder = SimpleLinear(W = wv, alpha=0.05)
 rand_gen = randgen(N=1000000, ntrain=len(trainingSet) - 1)
-alpha_gen = alphagen(N=1000000, alphastart = 0.002)
-simpleEmbedder.train_sgd(trainingSet, trainUtters, rand_gen, simpleEmbedder.annealiter(0.002, 300000), printevery=1000, costevery=10000)
+alpha_gen = alphagen(N=1000000, alphastart = 1)
+simpleEmbedder.train_sgd(trainingSet, trainUtters, rand_gen, printevery=1000, costevery=10000)
 write_pickle("models/", simpleEmbedder, saveFile)
 predictions = simpleEmbedder.predict(devSet, devUtters)
 print("Dev loss: " + str(simpleEmbedder.compute_display_loss(devSet, devUtters)))

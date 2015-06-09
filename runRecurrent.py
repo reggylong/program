@@ -61,9 +61,9 @@ else:
 alpha_gen = alphagen(N=300000, alphastart = 0.002)
 trainAccs = []
 devAccs = []
-for i in xrange(1):
-  rand_gen = randgen(N=200000, ntrain=len(trainingSet) - 1)
-  costs = recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 200000), printevery=1000, costevery=1000)
+for i in xrange(20):
+  rand_gen = randgen(N=10000, ntrain=len(trainingSet) - 1)
+  costs = recurrent.train_sgd(trainingSet, trainUtters, rand_gen, recurrent.annealiter(0.002, 200000), printevery=1000, costevery=10000)
   print(costs)
   write_pickle("models/", recurrent, saveFile)
   predictions = recurrent.predict(devSet, devUtters)
